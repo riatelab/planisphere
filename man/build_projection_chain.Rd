@@ -27,3 +27,4 @@ constructor chain (e.g. \code{d3.geoOrthographic().rotate([...])}).
 It is used internally by \code{project()} to generate the projection expression
 evaluated inside the V8 JavaScript context.
 }
+\keyword{internal}

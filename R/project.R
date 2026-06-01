@@ -113,9 +113,9 @@ project <- function(
   
   # post-processing
   
-  basemap <- st_make_valid(basemap)
-  graticule <- st_make_valid(graticule)
-  sphere <- st_make_valid(sphere)
+  basemap <- sf::st_make_valid(basemap)
+  graticule <- sf::st_make_valid(graticule)
+  sphere <- sf::st_make_valid(sphere)
   
   if (reverse) {
     basemap <- flipY(basemap)

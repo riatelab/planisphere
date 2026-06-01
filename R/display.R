@@ -21,6 +21,7 @@
 #'   \item \code{sphere}: outline of the projected globe
 #'   \item \code{graticule}: projected latitude/longitude grid
 #' }
+#' @param title Character string. Optional title to add to the plot. Default is NULL.
 #'
 #' @return a base R plot.
 #'
@@ -38,7 +39,7 @@
 #' ct <- planisphere::init()
 #' result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
 #' planisphere::display(result)
-display <- function(result) {
+display <- function(result, title = NULL) {
   
   op <- par(
     mar = c(0, 0, 0, 0),   
@@ -60,10 +61,14 @@ display <- function(result) {
        col = "#222222",
        border = NA,
        add = TRUE)
-
+  
   plot(sf::st_geometry(result$sphere),
        col = NA,
        border = "#666666",
        lwd = 1.2,
        add = TRUE)
+  
+  if (!is.null(title)) {
+    title(main = title, line = -1)
+  }
 }

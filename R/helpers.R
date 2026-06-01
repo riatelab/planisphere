@@ -14,7 +14,7 @@
 #' @param verbose Logical. If TRUE, prints the generated projection chain.
 #' @param ... Additional projection parameters passed as method calls
 #' (e.g. rotate, center, scale, reflectX).
-#'
+#' @keywords internal
 #' @return
 #' A character string representing a D3.js projection chain.
 #'
@@ -81,7 +81,7 @@ build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
 #' It operates directly on the geometry slot of an \code{sf} object.
 #'
 #' @param x An \code{sf} object.
-#'
+#' @keywords internal
 #' @return
 #' An \code{sf} object with flipped Y coordinates.
 #'

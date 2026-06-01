@@ -4,7 +4,7 @@
 \alias{display}
 \title{Display a projected planisphere}
 \usage{
-display(result)
+display(result, title = NULL)
 }
 \arguments{
 \item{result}{A list returned by \code{project()}, containing three \code{sf} objects:
@@ -13,6 +13,8 @@ display(result)
   \item \code{sphere}: outline of the projected globe
   \item \code{graticule}: projected latitude/longitude grid
 }}
+
+\item{title}{Character string. Optional title to add to the plot. Default is NULL.}
 }
 \value{
 a base R plot.

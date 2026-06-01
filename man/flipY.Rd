@@ -22,3 +22,4 @@ in base R plotting.
 
 It operates directly on the geometry slot of an \code{sf} object.
 }
+\keyword{internal}

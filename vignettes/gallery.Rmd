@@ -1,0 +1,55 @@
+---
+title: "Gallery"
+author: "Nicolas Lambert"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gallery}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, echo = FALSE}
+#| include: false
+knitr::opts_chunk$set(out.width = "100%")
+```
+
+```{r, echo = FALSE}
+# Data Loading
+library(sf)
+
+world <- st_read(
+  system.file("gpkg/land.gpkg", package = "planisphere"),
+  quiet = TRUE,
+)
+
+library(planisphere)
+ct <- planisphere::init(verbose = FALSE)
+```
+
+```{r, echo = FALSE}
+par(mfrow = c(4, 4))
+ct |> planisphere::project(x = world, proj = "geoInterruptedSinusoidal", verbose = FALSE) |> planisphere::display(title = "geoInterruptedSinusoidal")
+ct |> planisphere::project(x = world, proj = "geoInterruptedHomolosine", verbose = FALSE) |> planisphere::display(title = "geoInterruptedHomolosine")
+ct |> planisphere::project(x = world, proj = "geoInterruptedBoggs", verbose = FALSE) |> planisphere::display(title = "geoInterruptedBoggs")
+ct |> planisphere::project(x = world, proj = "geoInterruptedSinuMollweide", verbose = FALSE) |> planisphere::display(title = "geoInterruptedSinuMollweide")
+
+ct |> planisphere::project(x = world, proj = "geoInterruptedMollweide", verbose = FALSE) |> planisphere::display(title = "geoInterruptedMollweide")
+ct |> planisphere::project(x = world, proj = "geoInterruptedMollweideHemispheres", verbose = FALSE) |> planisphere::display(title = "geoInterruptedMollweideHemispheres")
+ct |> planisphere::project(x = world, proj = "geoInterruptedQuarticAuthalic", verbose = FALSE) |> planisphere::display(title = "geoInterruptedQuarticAuthalic")
+ct |> planisphere::project(x = world, proj = "geoPolyhedralButterfly", verbose = FALSE) |> planisphere::display(title = "geoPolyhedralButterfly")
+
+ct |> planisphere::project(x = world, proj = "geoPolyhedralCollignon", verbose = FALSE) |> planisphere::display(title = "geoPolyhedralCollignon")
+ct |> planisphere::project(x = world, proj = "geoPolyhedralWaterman", verbose = FALSE) |> planisphere::display(title = "geoPolyhedralWaterman")
+ct |> planisphere::project(x = world, proj = "geoDodecahedral", verbose = FALSE) |> planisphere::display(title = "geoDodecahedral")
+ct |> planisphere::project(x = world, proj = "geoAirocean", verbose = FALSE) |> planisphere::display(title = "geoAirocean")
+
+ct |> planisphere::project(x = world, proj = "geoImago", verbose = FALSE) |> planisphere::display(title = "geoImago")
+ct |> planisphere::project(x = world, proj = "geoBromley", verbose = FALSE) |> planisphere::display(title = "geoBromley")
+ct |> planisphere::project(x = world, proj = "geoChamberlinAfrica", verbose = FALSE) |> planisphere::display(title = "geoChamberlinAfrica")
+ct |> planisphere::project(x = world, proj = "geoCollignon", verbose = FALSE) |> planisphere::display(title = "geoCollignon")
+
+```
+
