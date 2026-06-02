@@ -17,9 +17,9 @@ remotes::install_github("riatelab/planisphere")
 
 The package provides three main functions.
 
-- `init()` initializes the V8 engine and loads the required JavaScript libraries.
 - `project()` applies a map projection to geometries.
 - `display()` renders the projected result.
+- `new_v8_context()` allow to initialize a new V8 engine with custom JavaScript libraries.
 
 ``` r
 library(sf)
@@ -51,6 +51,9 @@ By défault, the projection functions available in this package are those provid
 - `d3-geo`: https://d3js.org/d3-geo/projection
 - `d3-geo-projection`: https://github.com/d3/d3-geo-projection
 - `d3-geo-polygon`: https://github.com/d3/d3-geo-polygon
+
+Thanks to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors to these libraries who have worked on developing spatial functions within the D3.js ecosystem.
+
 
 For example, in the package, you can directly use `"d3.geoRhombic()"`, or simply `"geoRhombic"` or `"Rhombic"`. Be careful: uppercase and lowercase letters are important.
 

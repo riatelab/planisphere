@@ -8,12 +8,12 @@ geographic features.
 ## Usage
 
 ``` r
-display(result, title = NULL)
+display(x, title = NULL)
 ```
 
 ## Arguments
 
-- result:
+- x:
 
   A list returned by
   [`project()`](https://rneocarto.github.io/planisphere/reference/project.md),
@@ -46,7 +46,7 @@ exploration of D3-based projections.
 ## See also
 
 [`project`](https://rneocarto.github.io/planisphere/reference/project.md),
-[`init`](https://rneocarto.github.io/planisphere/reference/init.md)
+`init`
 
 ## Examples
 
@@ -58,13 +58,6 @@ world <- st_read(
   quiet = TRUE
 )
 
-ct <- planisphere::init()
-#> Loading JavaScript libraries
-#> ✔ https://cdn.jsdelivr.net/npm/d3@7
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
-#> D3.js projection used: d3.geoInterruptedBoggs().scale(6378137)
+result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
 planisphere::display(result)
 ```

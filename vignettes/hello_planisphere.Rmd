@@ -63,12 +63,9 @@ world <- st_read(
 )
 ```
 
-```{r}
-ct <- planisphere::init()
-```
 
 ```{r}
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedMollweide")
+result <- planisphere::project(x = world, proj = "geoInterruptedMollweide")
 ```
 
 ```{r}
@@ -76,15 +73,43 @@ planisphere::display(result)
 ```
 
 ```{r}
-result <- planisphere::project(ct, x = world, proj = "geoIcosahedral") |> 
+result <- planisphere::project(x = world, proj = "geoIcosahedral") |> 
   display()
 ```
 
 
-# xxx
+# Custom projections
+
+Peters (upside down)
 
 ```{r}
-hao <- planisphere::project(ct,
+peters <- planisphere::project(
+                            x = world,
+                            proj = "geoCylindricalEqualArea",
+                            parallel = 45,
+                            rotate = c(167, 180),
+                            additional_layers = TRUE
+                            )
+display(peters)
+```
+
+```{r}
+polar <- planisphere::project(
+                            x = world,
+                            proj = "geoAzimuthalEquidistant",
+                            clipAngle = 150,
+                            rotate = c(0, -90),
+                             additional_layers = TRUE
+                            )
+display(polar)
+```
+
+projection: d3.geoCylindricalEqualArea().parallel(45).rotate([167, 180]),
+
+Hao
+
+```{r}
+hao <- planisphere::project(
                             x = world,
                             proj = "geoHufnagel",
                             a = 0.8,
@@ -92,8 +117,41 @@ hao <- planisphere::project(ct,
                             psiMax = 50,
                             ratio = 1.6,
                             angle = 90,
-                            rotate = c(110, -200, 90))
+                            rotate = c(110, -200, 90),
+                            additional_layers = TRUE
+                            )
 display(hao)
+```
+
+
+
+
+
+# Gallery
+
+
+```{r, echo = FALSE}
+par(mfrow = c(4, 4))
+planisphere::project(x = world, proj = "geoInterruptedSinusoidal",  additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedSinusoidal")
+planisphere::project(x = world, proj = "geoInterruptedHomolosine", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedHomolosine")
+planisphere::project(x = world, proj = "geoInterruptedBoggs", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedBoggs")
+planisphere::project(x = world, proj = "geoInterruptedSinuMollweide", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedSinuMollweide")
+
+planisphere::project(x = world, proj = "geoInterruptedMollweide", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedMollweide")
+planisphere::project(x = world, proj = "geoInterruptedMollweideHemispheres", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedMollweideHemispheres")
+planisphere::project(x = world, proj = "geoInterruptedQuarticAuthalic", additional_layers = TRUE) |> planisphere::display(title = "geoInterruptedQuarticAuthalic")
+planisphere::project(x = world, proj = "geoPolyhedralButterfly", additional_layers = TRUE) |> planisphere::display(title = "geoPolyhedralButterfly")
+
+planisphere::project(x = world, proj = "geoPolyhedralCollignon", additional_layers = TRUE) |> planisphere::display(title = "geoPolyhedralCollignon")
+planisphere::project(x = world, proj = "geoPolyhedralWaterman", additional_layers = TRUE) |> planisphere::display(title = "geoPolyhedralWaterman")
+planisphere::project(x = world, proj = "geoDodecahedral", additional_layers = TRUE) |> planisphere::display(title = "geoDodecahedral")
+planisphere::project(x = world, proj = "geoAirocean", additional_layers = TRUE) |> planisphere::display(title = "geoAirocean")
+
+planisphere::project(x = world, proj = "geoImago", additional_layers = TRUE) |> planisphere::display(title = "geoImago")
+planisphere::project(x = world, proj = "geoBromley", additional_layers = TRUE) |> planisphere::display(title = "geoBromley")
+planisphere::project(x = world, proj = "geoChamberlinAfrica", additional_layers = TRUE) |> planisphere::display(title = "geoChamberlinAfrica")
+planisphere::project(x = world, proj = "geoCollignon", additional_layers = TRUE) |> planisphere::display(title = "geoCollignon")
+
 ```
 
 

@@ -11,7 +11,6 @@
 #' datums (e.g., WGS84). As a result, this function is primarily intended for visualization
 #' and cartographic rendering rather than high-precision geodetic computation.
 #'
-#' @param ct A V8 JavaScript context created with \code{init()}.
 #' @param x An \code{sf} spatial dataframe to project.
 #' @param proj A D3 projection name or constructor (e.g. "geoInterruptedHomolosine").
 #' @param rotate Rotation parameters passed to the projection.
@@ -20,12 +19,16 @@
 #' @param scale Projection scale factor (D3 spherical scale, not planar CRS units).
 #' @param center Optional projection center.
 #' @param reverse If TRUE, flips the Y axis for display consistency in R plots.
-#' @param clipOutline If TRUE, clips the projected geometries to the projected sphere.
+#' @param clip If TRUE, clips the projected geometries to the projected sphere.
 #' @param graticule Numeric vector of longitude/latitude step size for graticule generation.
+#' @param additional_ayers Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.
+#' @param ct A custom V8 JavaScript context if needed. See \code{new_v8_context()}.
 #' @param ... Additional parameters passed to the projection builder.
 #'
 #' @return
-#' A list of three \code{sf} objects:
+#' If \code{additionalLayers = FALSE}, a single \code{sf} object corresponding to the projected basemap.
+#' 
+#' If \code{additionalLayers = TRUE}, a list of \code{sf} objects:
 #' \itemize{
 #'   \item \code{basemap}: projected input geometries
 #'   \item \code{sphere}: outline of the projected globe
@@ -40,36 +43,38 @@
 #'   quiet = TRUE
 #' )
 #'
-#' ct <- planisphere::init()
-#' result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
-#'
+#' result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+#' 
 #'@seealso \code{\link{init}}
 #'
 #' @export
 project <- function(
-    ct,
     x,
-    proj = "geoInterruptedHomolosine",
+    proj = "geoAzimuthalEqualArea",
     rotate = NULL,
     reflectX = NULL,
     reflectY = NULL,
     scale = 6378137,
     center = NULL,
     reverse = TRUE,
-    clipOutline = TRUE,
+    clip = TRUE,
     graticule = c(10,10),
+    additional_layers = FALSE,
+    verbose = FALSE,
+    ct = .planisphere$ct,
     ...
 ) {
   
   geojson <- geojsonsf::sf_geojson(x)
   
-  # build projection chain in R (single source of truth)
+  # build projection chain in R 
   proj_chain <- build_projection_chain(
     proj = proj,
     rotate = rotate,
     reflectX = reflectX,
     scale = scale,
     center = center,
+    verbose = verbose,
     ...
   )
   
@@ -116,7 +121,7 @@ project <- function(
   basemap <- sf::st_make_valid(basemap)
   graticule <- sf::st_make_valid(graticule)
   sphere <- sf::st_make_valid(sphere)
-  
+
   if (reverse) {
     basemap <- flipY(basemap)
     sphere <- flipY(sphere)
@@ -124,17 +129,18 @@ project <- function(
   }
   
   
-  if (clipOutline) {
-    basemap <- st_intersection(basemap, sphere)
-    graticule <- st_intersection(graticule, sphere)
+  if (clip) {
+    basemap <- sf::st_intersection(basemap, sphere)
+    graticule <- sf::st_intersection(graticule, sphere)
   }
   
   
   
-  
+if(!additional_layers){return (basemap)} else {
   return(list(
     basemap = basemap,
     sphere = sphere,
     graticule = graticule
   ))
+}
 }

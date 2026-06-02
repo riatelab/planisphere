@@ -9,27 +9,24 @@ modeled as a sphere rather than an ellipsoid.
 
 ``` r
 project(
-  ct,
   x,
-  proj = "geoInterruptedHomolosine",
+  proj = "geoAzimuthalEqualArea",
   rotate = NULL,
   reflectX = NULL,
   reflectY = NULL,
   scale = 6378137,
   center = NULL,
   reverse = TRUE,
-  clipOutline = TRUE,
+  clip = TRUE,
   graticule = c(10, 10),
+  additional_layers = FALSE,
+  verbose = FALSE,
+  ct = .planisphere$ct,
   ...
 )
 ```
 
 ## Arguments
-
-- ct:
-
-  A V8 JavaScript context created with
-  [`init()`](https://rneocarto.github.io/planisphere/reference/init.md).
 
 - x:
 
@@ -63,7 +60,7 @@ project(
 
   If TRUE, flips the Y axis for display consistency in R plots.
 
-- clipOutline:
+- clip:
 
   If TRUE, clips the projected geometries to the projected sphere.
 
@@ -72,13 +69,27 @@ project(
   Numeric vector of longitude/latitude step size for graticule
   generation.
 
+- ct:
+
+  A custom V8 JavaScript context if needed. See
+  [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md).
+
 - ...:
 
   Additional parameters passed to the projection builder.
 
+- additional_ayers:
+
+  Logical. If TRUE, adds graticule and sphere layers. In this case, the
+  function returns a list. If FALSE (default), it returns a spatial data
+  frame.
+
 ## Value
 
-A list of three `sf` objects:
+If `additionalLayers = FALSE`, a single `sf` object corresponding to the
+projected basemap.
+
+If `additionalLayers = TRUE`, a list of `sf` objects:
 
 - `basemap`: projected input geometries
 
@@ -96,7 +107,7 @@ cartographic rendering rather than high-precision geodetic computation.
 
 ## See also
 
-[`init`](https://rneocarto.github.io/planisphere/reference/init.md)
+`init`
 
 ## Examples
 
@@ -107,12 +118,5 @@ world <- st_read(
   quiet = TRUE
 )
 
-ct <- planisphere::init()
-#> Loading JavaScript libraries
-#> ✔ https://cdn.jsdelivr.net/npm/d3@7
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
-#> D3.js projection used: d3.geoInterruptedBoggs().scale(6378137)
+result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
 ```

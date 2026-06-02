@@ -15,15 +15,24 @@
 #' @param ... Additional projection parameters passed as method calls
 #' (e.g. rotate, center, scale, reflectX).
 #' @keywords internal
+#' @noRd
 #' @return
 #' A character string representing a D3.js projection chain.
 #'
-build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
+build_projection_chain <- function(proj = "geoSomething", verbose = FALSE, ...) {
   
   extra <- list(...)
   
+  if (grepl("spilhaus", proj, ignore.case = TRUE)) {
+    out <- "Spilhaus()"
+    if (verbose) message("xxxD3.js projection used: ", out)
+    return(invisible(out))
+  }
+  
   if (grepl("^\\s*d3\\.", proj)) {
-    return(proj)
+    out <- proj
+    if (verbose) message("xxxD3.js projection used: ", out)
+    return(invisible(out))
   }
   
   if (!grepl("^geo", proj)) {
@@ -32,13 +41,9 @@ build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
   
   chain <- paste0("d3.", proj, "()")
   
-  # excluded keys
-  excluded <- c("verbose", "reverse", "clipOutline", "graticule")
-  
-  extra <- extra[!names(extra) %in% excluded]
+  extra <- extra[!names(extra) %in% c("verbose", "reverse", "clip", "graticule", "additional_layers")]
   
   for (nm in names(extra)) {
-    
     val <- extra[[nm]]
     if (is.null(val)) next
     
@@ -48,7 +53,6 @@ build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
       center = paste0("[", paste(val, collapse = ","), "]"),
       reflectX = tolower(as.character(val)),
       scale = as.character(val),
-      # default for unknown args
       if (is.logical(val)) {
         tolower(as.character(val))
       } else if (is.numeric(val)) {
@@ -62,10 +66,10 @@ build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
   }
   
   if (verbose) {
-    message(paste0("D3.js projection used: ",chain))
-    
+    message("D3.js projection used: ", chain)
   }
-  chain
+  
+  invisible(chain)
 }
 
 #' Flip geometry along Y axis
@@ -82,6 +86,7 @@ build_projection_chain <- function(proj = "geoSomething", verbose = TRUE,...) {
 #'
 #' @param x An \code{sf} object.
 #' @keywords internal
+#' @noRd
 #' @return
 #' An \code{sf} object with flipped Y coordinates.
 #'

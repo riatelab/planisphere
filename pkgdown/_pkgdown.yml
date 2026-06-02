@@ -17,28 +17,19 @@ template:
 
 navbar:
   structure:
-    left: [home, articles, reference]
+    left: [home, start, reference]
 
   components:
-    articles:
-      text: Articles
-      menu:
-      - text: Get started
-        href: articles/hello_planisphere.html
-      - text: Gallery
-        href: articles/gallery.html
+    start:
+      text: Get started
+      href: articles/hello_planisphere.html
 
 reference:
   - title: "Core API"
     contents:
-      - init
       - project
       - display
-
-  - title: "Internals"
-    contents:
-      - build_projection_chain
-      - flipY
+      - new_v8_context
 
 figures:
   dev: grDevices::png

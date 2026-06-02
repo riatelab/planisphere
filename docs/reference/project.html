@@ -19,11 +19,7 @@ where the Earth is modeled as a sphere rather than an ellipsoid."><meta property
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/hello_planisphere.html">Get started</a></li>
-    <li><a class="dropdown-item" href="../articles/gallery.html">Gallery</a></li>
-  </ul></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/hello_planisphere.html">Get started</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -50,17 +46,19 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">project</span><span class="op">(</span></span>
-<span>  <span class="va">ct</span>,</span>
 <span>  <span class="va">x</span>,</span>
-<span>  proj <span class="op">=</span> <span class="st">"geoInterruptedHomolosine"</span>,</span>
+<span>  proj <span class="op">=</span> <span class="st">"geoAzimuthalEqualArea"</span>,</span>
 <span>  rotate <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reflectX <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reflectY <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scale <span class="op">=</span> <span class="fl">6378137</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  clipOutline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  clip <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  graticule <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  additional_layers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ct <span class="op">=</span> <span class="va">.planisphere</span><span class="op">$</span><span class="va">ct</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -69,11 +67,7 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-ct">ct<a class="anchor" aria-label="anchor" href="#arg-ct"></a></dt>
-<dd><p>A V8 JavaScript context created with <code><a href="init.html">init()</a></code>.</p></dd>
-
-
-<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>An <code>sf</code> spatial dataframe to project.</p></dd>
 
 
@@ -105,7 +99,7 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
 <dd><p>If TRUE, flips the Y axis for display consistency in R plots.</p></dd>
 
 
-<dt id="arg-clipoutline">clipOutline<a class="anchor" aria-label="anchor" href="#arg-clipoutline"></a></dt>
+<dt id="arg-clip">clip<a class="anchor" aria-label="anchor" href="#arg-clip"></a></dt>
 <dd><p>If TRUE, clips the projected geometries to the projected sphere.</p></dd>
 
 
@@ -113,13 +107,22 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
 <dd><p>Numeric vector of longitude/latitude step size for graticule generation.</p></dd>
 
 
+<dt id="arg-ct">ct<a class="anchor" aria-label="anchor" href="#arg-ct"></a></dt>
+<dd><p>A custom V8 JavaScript context if needed. See <code><a href="new_v8_context.html">new_v8_context()</a></code>.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional parameters passed to the projection builder.</p></dd>
+
+
+<dt id="arg-additional-ayers">additional_ayers<a class="anchor" aria-label="anchor" href="#arg-additional-ayers"></a></dt>
+<dd><p>Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list of three <code>sf</code> objects:</p><ul><li><p><code>basemap</code>: projected input geometries</p></li>
+    <p>If <code>additionalLayers = FALSE</code>, a single <code>sf</code> object corresponding to the projected basemap.</p>
+<p>If <code>additionalLayers = TRUE</code>, a list of <code>sf</code> objects:</p><ul><li><p><code>basemap</code>: projected input geometries</p></li>
 <li><p><code>sphere</code>: outline of the projected globe</p></li>
 <li><p><code>graticule</code>: projected graticule lines</p></li>
 </ul></div>
@@ -132,7 +135,7 @@ and cartographic rendering rather than high-precision geodetic computation.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="init.html">init</a></code></p></div>
+    <div class="dont-index"><p><code>init</code></p></div>
     </div>
 
     <div class="section level2">
@@ -143,14 +146,7 @@ and cartographic rendering rather than high-precision geodetic computation.</p>
 <span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="init.html">init</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading JavaScript libraries</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ✔ https://cdn.jsdelivr.net/npm/d3@7</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1</span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">project</span><span class="op">(</span><span class="va">ct</span>, x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedBoggs"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> D3.js projection used: d3.geoInterruptedBoggs().scale(6378137)</span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">project</span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedBoggs"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

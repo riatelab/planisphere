@@ -15,7 +15,7 @@
 #' All geometries are expected to be already projected in spherical coordinates.
 #' This function is intended for fast visualization and exploration of D3-based projections.
 #'
-#' @param result A list returned by \code{project()}, containing three \code{sf} objects:
+#' @param x A list returned by \code{project()}, containing three \code{sf} objects:
 #' \itemize{
 #'   \item \code{basemap}: projected geographic features
 #'   \item \code{sphere}: outline of the projected globe
@@ -36,39 +36,47 @@
 #'   quiet = TRUE
 #' )
 #'
-#' ct <- planisphere::init()
-#' result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
+#' result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
 #' planisphere::display(result)
-display <- function(result, title = NULL) {
+display <- function(x, title = NULL) {
   
-  op <- par(
-    mar = c(0, 0, 0, 0),   
-    bg = "white"
-  )
-  
+    mar_top <- if (!is.null(title)) 2 else 0
+    op <- par(
+      mar = c(0, 0, mar_top, 0),
+      bg = "white"
+    )
   on.exit(par(op))
   
-  plot(sf::st_geometry(result$sphere),
-       col = "#F5F5F5",
-       border = NA)
-  
-  plot(sf::st_geometry(result$graticule),
-       col = "#D0D0D0",
-       lwd = 0.5,
-       add = TRUE)
-  
-  plot(sf::st_geometry(result$basemap),
-       col = "#222222",
-       border = NA,
-       add = TRUE)
-  
-  plot(sf::st_geometry(result$sphere),
-       col = NA,
-       border = "#666666",
-       lwd = 1.2,
-       add = TRUE)
+  if (is.list(x) && !inherits(x, "sf")) {
+    
+    plot(sf::st_geometry(x$sphere),
+         col = "#F5F5F5",
+         border = NA)
+    
+    plot(sf::st_geometry(x$graticule),
+         col = "#D0D0D0",
+         lwd = 0.5,
+         add = TRUE)
+    
+    plot(sf::st_geometry(x$basemap),
+         col = "#222222",
+         border = NA,
+         add = TRUE)
+    
+    plot(sf::st_geometry(x$sphere),
+         col = NA,
+         border = "#666666",
+         lwd = 1.2,
+         add = TRUE)
+    
+  } else {
+    
+    plot(sf::st_geometry(x),
+         col = "#222222",
+         border = NA)
+  }
   
   if (!is.null(title)) {
-    title(main = title, line = -1)
+    title(main = title, line = 0.5)
   }
 }

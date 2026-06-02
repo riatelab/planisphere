@@ -4,10 +4,10 @@
 \alias{display}
 \title{Display a projected planisphere}
 \usage{
-display(result, title = NULL)
+display(x, title = NULL)
 }
 \arguments{
-\item{result}{A list returned by \code{project()}, containing three \code{sf} objects:
+\item{x}{A list returned by \code{project()}, containing three \code{sf} objects:
 \itemize{
   \item \code{basemap}: projected geographic features
   \item \code{sphere}: outline of the projected globe
@@ -41,8 +41,7 @@ world <- st_read(
   quiet = TRUE
 )
 
-ct <- planisphere::init()
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
+result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
 planisphere::display(result)
 }
 \seealso{

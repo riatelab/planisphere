@@ -71,6 +71,22 @@ clipping.
 library(planisphere)
 ```
 
+    ## V8 engine 12.4.254.21 initialized
+
+    ## Loading D3.js geospatial stack
+
+    ## ✔ d3 (7.9.0)
+
+    ## ✔ d3-geo (3.1.1)
+
+    ## ✔ d3-geo-projection (4.0.0)
+
+    ## ✔ d3-geo-polygon (1.12.1)
+
+    ## ✔ additional script (spilhaus.js)
+
+    ## Planisphere is ready 🌐
+
 ``` r
 # Data Loading
 library(sf)
@@ -86,44 +102,59 @@ world <- st_read(
 ```
 
 ``` r
-ct <- planisphere::init()
+result <- planisphere::project(x = world, proj = "geoInterruptedMollweide")
 ```
-
-    ## Loading JavaScript libraries
-
-    ## ✔ https://cdn.jsdelivr.net/npm/d3@7
-
-    ## ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
-
-    ## ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-
-    ## ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
-
-``` r
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedMollweide")
-```
-
-    ## D3.js projection used: d3.geoInterruptedMollweide().scale(6378137)
 
 ``` r
 planisphere::display(result)
 ```
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-7-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-6-1.png)
 
 ``` r
-result <- planisphere::project(ct, x = world, proj = "geoIcosahedral") |> 
+result <- planisphere::project(x = world, proj = "geoIcosahedral") |> 
   display()
 ```
 
-    ## D3.js projection used: d3.geoIcosahedral().scale(6378137)
+![](hello_planisphere_files/figure-html/unnamed-chunk-7-1.png)
+
+## Custom projections
+
+Peters (upside down)
+
+``` r
+peters <- planisphere::project(
+                            x = world,
+                            proj = "geoCylindricalEqualArea",
+                            parallel = 45,
+                            rotate = c(167, 180),
+                            additional_layers = TRUE
+                            )
+display(peters)
+```
 
 ![](hello_planisphere_files/figure-html/unnamed-chunk-8-1.png)
 
-## xxx
+``` r
+polar <- planisphere::project(
+                            x = world,
+                            proj = "geoAzimuthalEquidistant",
+                            clipAngle = 150,
+                            rotate = c(0, -90),
+                             additional_layers = TRUE
+                            )
+display(polar)
+```
+
+![](hello_planisphere_files/figure-html/unnamed-chunk-9-1.png)
+
+projection: d3.geoCylindricalEqualArea().parallel(45).rotate(\[167,
+180\]),
+
+Hao
 
 ``` r
-hao <- planisphere::project(ct,
+hao <- planisphere::project(
                             x = world,
                             proj = "geoHufnagel",
                             a = 0.8,
@@ -131,13 +162,14 @@ hao <- planisphere::project(ct,
                             psiMax = 50,
                             ratio = 1.6,
                             angle = 90,
-                            rotate = c(110, -200, 90))
-```
-
-    ## D3.js projection used: d3.geoHufnagel().rotate([110,-200,90]).scale(6378137).a(0.8).b(0.35).psiMax(50).ratio(1.6).angle(90)
-
-``` r
+                            rotate = c(110, -200, 90),
+                            additional_layers = TRUE
+                            )
 display(hao)
 ```
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-9-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-10-1.png)
+
+## Gallery
+
+![](hello_planisphere_files/figure-html/unnamed-chunk-11-1.png)

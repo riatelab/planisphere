@@ -37,13 +37,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/hello_planisphere.html">Get started</a></li>
-    <li><a class="dropdown-item" href="articles/gallery.html">Gallery</a></li>
-  </ul>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/hello_planisphere.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -77,11 +71,11 @@
 <p>The package provides three main functions.</p>
 <ul>
 <li>
-<code><a href="reference/init.html">init()</a></code> initializes the V8 engine and loads the required JavaScript libraries.</li>
-<li>
 <code><a href="reference/project.html">project()</a></code> applies a map projection to geometries.</li>
 <li>
 <code><a href="reference/display.html">display()</a></code> renders the projected result.</li>
+<li>
+<code><a href="reference/new_v8_context.html">new_v8_context()</a></code> allow to initialize a new V8 engine with custom JavaScript libraries.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
@@ -91,12 +85,12 @@
 <span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/init.html">init</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span><span class="va">ct</span>, x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedMollweide"</span><span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p>These three operations can be chained using the pipe operator <code>|&gt;</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/init.html">init</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedMollweide"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -115,6 +109,7 @@
 <code>d3-geo-polygon</code>: <a href="https://github.com/d3/d3-geo-polygon" class="external-link uri">https://github.com/d3/d3-geo-polygon</a>
 </li>
 </ul>
+<p>Thanks to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors to these libraries who have worked on developing spatial functions within the D3.js ecosystem.</p>
 <p>For example, in the package, you can directly use <code>"d3.geoRhombic()"</code>, or simply <code>"geoRhombic"</code> or <code>"Rhombic"</code>. Be careful: uppercase and lowercase letters are important.</p>
 <p>All projection functions are configurable. For example, to obtain a polar projection, you can write:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">

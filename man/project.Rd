@@ -5,23 +5,23 @@
 \title{Project geographic data using a D3.js projection}
 \usage{
 project(
-  ct,
   x,
-  proj = "geoInterruptedHomolosine",
+  proj = "geoAzimuthalEqualArea",
   rotate = NULL,
   reflectX = NULL,
   reflectY = NULL,
   scale = 6378137,
   center = NULL,
   reverse = TRUE,
-  clipOutline = TRUE,
+  clip = TRUE,
   graticule = c(10, 10),
+  additional_layers = FALSE,
+  verbose = FALSE,
+  ct = .planisphere$ct,
   ...
 )
 }
 \arguments{
-\item{ct}{A V8 JavaScript context created with \code{init()}.}
-
 \item{x}{An \code{sf} spatial dataframe to project.}
 
 \item{proj}{A D3 projection name or constructor (e.g. "geoInterruptedHomolosine").}
@@ -38,14 +38,20 @@ project(
 
 \item{reverse}{If TRUE, flips the Y axis for display consistency in R plots.}
 
-\item{clipOutline}{If TRUE, clips the projected geometries to the projected sphere.}
+\item{clip}{If TRUE, clips the projected geometries to the projected sphere.}
 
 \item{graticule}{Numeric vector of longitude/latitude step size for graticule generation.}
 
+\item{ct}{A custom V8 JavaScript context if needed. See \code{new_v8_context()}.}
+
 \item{...}{Additional parameters passed to the projection builder.}
+
+\item{additional_ayers}{Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.}
 }
 \value{
-A list of three \code{sf} objects:
+If \code{additionalLayers = FALSE}, a single \code{sf} object corresponding to the projected basemap.
+
+If \code{additionalLayers = TRUE}, a list of \code{sf} objects:
 \itemize{
   \item \code{basemap}: projected input geometries
   \item \code{sphere}: outline of the projected globe
@@ -70,8 +76,7 @@ world <- st_read(
   quiet = TRUE
 )
 
-ct <- planisphere::init()
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedBoggs")
+result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
 
 }
 \seealso{

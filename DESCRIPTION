@@ -2,7 +2,7 @@ Package: planisphere
 Title: Map projections
 Version: 0.1.0
 Authors@R: c(person("Nicolas", "Lambert", email = "nicolas.lambert@cnrs.fr", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4976-6560")))
-Description: A wrapper around D3.js for cartographic projections to design and visualize world maps (planispheres). Projections are computed using D3.js spherical geometry rather than ellipsoidal geodesic models.
+Description: A wrapper around D3.js for cartographic projections to design and visualize world maps (planispheres). Projections are computed using D3.js spherical geometry rather than ellipsoidal geodesic models. 
 License: GPL-3
 URL: https://neocarto.github.io/planisphere/
 BugReports: https://github.com/neocarto/planisphere/issues
