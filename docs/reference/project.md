@@ -14,9 +14,8 @@ project(
   rotate = NULL,
   reflectX = NULL,
   reflectY = NULL,
-  scale = 6378137,
+  scale = 1,
   center = NULL,
-  reverse = TRUE,
   clip = TRUE,
   graticule = c(10, 10),
   additional_layers = FALSE,
@@ -55,10 +54,6 @@ project(
 - center:
 
   Optional projection center.
-
-- reverse:
-
-  If TRUE, flips the Y axis for display consistency in R plots.
 
 - clip:
 
@@ -119,4 +114,5 @@ world <- st_read(
 )
 
 result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+#> Error in clean(x): object 'world' not found
 ```

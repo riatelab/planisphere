@@ -6,9 +6,9 @@
   
   libs <- list(
     list(name = "d3", version = "7.9.0", file = "d3@7.js"),
-    list(name = "d3-geo", version = "3.1.1", file = "d3-geo@3.js"),
+    list(name = "d3-geo-polygon", version = "2.0.1", file = "d3-geo-polygon@2.js"),
     list(name = "d3-geo-projection", version = "4.0.0", file = "d3-geo-projection@4.js"),
-    list(name = "d3-geo-polygon", version = "1.12.1", file = "d3-geo-polygon@1.js"),
+    list(name = "d3-geo", version = "3.1.1", file = "d3-geo@3.js"),
     list(name = "additional script", version = "spilhaus.js", file = "spilhaus.js")
     )
   
@@ -47,6 +47,9 @@
       ))
     })
   }
+  
+  # + some js helpers
+  .planisphere$ct$source(file.path(js, "helpers.js"))
   
   packageStartupMessage("Planisphere is ready 🌐")
 }

@@ -80,6 +80,29 @@ result <- planisphere::project(x = world, proj = "geoIcosahedral") |>
 
 # Custom projections
 
+Peirce projection
+
+```{r}
+peirceN <- planisphere::project(
+                            x = world,
+                            proj = "PeirceQuincuncial",
+                            rotate = c(-25, -90),
+                            additional_layers = TRUE
+                            )
+display(peirceN)
+```
+
+
+```{r}
+peirceS <- planisphere::project(
+                            x = world,
+                            proj = "PeirceQuincuncial",
+                            rotate = c(-25, 90, 180),
+                            additional_layers = TRUE
+                            )
+display(peirceS)
+```
+
 Peters (upside down)
 
 ```{r}

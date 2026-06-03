@@ -56,7 +56,7 @@
                         <h4 data-toc-skip class="author">Nicolas
 Lambert</h4>
             
-            <h4 data-toc-skip class="date">2026-06-02</h4>
+            <h4 data-toc-skip class="date">2026-06-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/neocarto/planisphere/blob/HEAD/vignettes/hello_planisphere.Rmd" class="external-link"><code>vignettes/hello_planisphere.Rmd</code></a></small>
       <div class="d-none name"><code>hello_planisphere.Rmd</code></div>
@@ -167,8 +167,27 @@ clipping.</p>
 <div class="section level2">
 <h2 id="custom-projections">Custom projections<a class="anchor" aria-label="anchor" href="#custom-projections"></a>
 </h2>
-<p>Peters (upside down)</p>
+<p>Peirce projection</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">peirceN</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="../reference/project.html">project</a></span><span class="op">(</span></span>
+<span>                            x <span class="op">=</span> <span class="va">world</span>,</span>
+<span>                            proj <span class="op">=</span> <span class="st">"PeirceQuincuncial"</span>,</span>
+<span>                            rotate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25</span>, <span class="op">-</span><span class="fl">90</span><span class="op">)</span>,</span>
+<span>                            additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>                            <span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/display.html">display</a></span><span class="op">(</span><span class="va">peirceN</span><span class="op">)</span></span></code></pre></div>
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">peirceS</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="../reference/project.html">project</a></span><span class="op">(</span></span>
+<span>                            x <span class="op">=</span> <span class="va">world</span>,</span>
+<span>                            proj <span class="op">=</span> <span class="st">"PeirceQuincuncial"</span>,</span>
+<span>                            rotate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25</span>, <span class="fl">90</span>, <span class="fl">180</span><span class="op">)</span>,</span>
+<span>                            additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>                            <span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/display.html">display</a></span><span class="op">(</span><span class="va">peirceS</span><span class="op">)</span></span></code></pre></div>
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="100%"></p>
+<p>Peters (upside down)</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">peters</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="../reference/project.html">project</a></span><span class="op">(</span></span>
 <span>                            x <span class="op">=</span> <span class="va">world</span>,</span>
 <span>                            proj <span class="op">=</span> <span class="st">"geoCylindricalEqualArea"</span>,</span>
@@ -177,8 +196,8 @@ clipping.</p>
 <span>                            additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>                            <span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/display.html">display</a></span><span class="op">(</span><span class="va">peters</span><span class="op">)</span></span></code></pre></div>
-<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polar</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="../reference/project.html">project</a></span><span class="op">(</span></span>
 <span>                            x <span class="op">=</span> <span class="va">world</span>,</span>
 <span>                            proj <span class="op">=</span> <span class="st">"geoAzimuthalEquidistant"</span>,</span>
@@ -187,11 +206,11 @@ clipping.</p>
 <span>                             additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>                            <span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/display.html">display</a></span><span class="op">(</span><span class="va">polar</span><span class="op">)</span></span></code></pre></div>
-<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="100%"></p>
 <p>projection: d3.geoCylindricalEqualArea().parallel(45).rotate([167,
 180]),</p>
 <p>Hao</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hao</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="../reference/project.html">project</a></span><span class="op">(</span></span>
 <span>                            x <span class="op">=</span> <span class="va">world</span>,</span>
 <span>                            proj <span class="op">=</span> <span class="st">"geoHufnagel"</span>,</span>
@@ -204,12 +223,12 @@ clipping.</p>
 <span>                            additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>                            <span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/display.html">display</a></span><span class="op">(</span><span class="va">hao</span><span class="op">)</span></span></code></pre></div>
-<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="gallery">Gallery<a class="anchor" aria-label="anchor" href="#gallery"></a>
 </h2>
-<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="hello_planisphere_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

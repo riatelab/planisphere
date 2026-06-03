@@ -23,15 +23,16 @@ build_projection_chain <- function(proj = "geoSomething", verbose = FALSE, ...) 
   
   extra <- list(...)
   
+
   if (grepl("spilhaus", proj, ignore.case = TRUE)) {
     out <- "Spilhaus()"
-    if (verbose) message("xxxD3.js projection used: ", out)
+    if (verbose) message("D3.js projection used: ", out)
     return(invisible(out))
   }
   
   if (grepl("^\\s*d3\\.", proj)) {
     out <- proj
-    if (verbose) message("xxxD3.js projection used: ", out)
+    if (verbose) message("D3.js projection used: ", out)
     return(invisible(out))
   }
   
@@ -41,7 +42,7 @@ build_projection_chain <- function(proj = "geoSomething", verbose = FALSE, ...) 
   
   chain <- paste0("d3.", proj, "()")
   
-  extra <- extra[!names(extra) %in% c("verbose", "reverse", "clip", "graticule", "additional_layers")]
+  extra <- extra[!names(extra) %in% c("verbose", "clip", "graticule", "additional_layers")]
   
   for (nm in names(extra)) {
     val <- extra[[nm]]
@@ -97,4 +98,48 @@ flipY <- function(x) {
   })
   sf::st_geometry(x) <- sf::st_sfc(geom, crs = sf::st_crs(x))
   x
+}
+
+
+#' Clean and clip geometries for planar processing
+#'
+#' @description
+#' Internal helper that cleans sf geometries, removes invalid or empty features,
+#' and clips data to a slightly reduced world extent in a projected planar CRS.
+#'
+#' @details
+#' Input geometries are assumed to be in WGS84 (EPSG:4326). They are temporarily
+#' projected to a planar CRS for robust GEOS operations (e.g. intersection),
+#' then returned in WGS84.
+#'
+#' @param x An sf object in WGS84 (EPSG:4326).
+#' @param margin Numeric. Margin applied to world bbox (default 0.01).
+#' @param work_crs CRS used for planar computation (default 6933).
+#' @param verbose Logical. Print progress messages.
+#'
+#' @keywords internal
+#' @noRd
+#'
+#' @return An sf object cleaned and clipped.
+clean <- function(x){
+  
+  x <- world
+  
+  margin <- 0.01
+  
+  world_bbox <- sf::st_bbox(c(
+    xmin = -180 + margin,
+    ymin = -90  + margin,
+    xmax =  180 - margin,
+    ymax =  90  - margin
+  ), crs = sf::st_crs(4326))
+  
+  world_sf <- sf::st_as_sfc(world_bbox)
+  
+  
+  a <- sf::st_transform(x, 3857)
+  b <- sf::st_transform(world_sf, 3857)
+  
+  result <- suppressWarnings(sf::st_intersection(a, b))
+  result <- sf::st_transform(result, 4326)
 }

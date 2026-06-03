@@ -120,6 +120,32 @@ result <- planisphere::project(x = world, proj = "geoIcosahedral") |>
 
 ## Custom projections
 
+Peirce projection
+
+``` r
+peirceN <- planisphere::project(
+                            x = world,
+                            proj = "PeirceQuincuncial",
+                            rotate = c(-25, -90),
+                            additional_layers = TRUE
+                            )
+display(peirceN)
+```
+
+![](hello_planisphere_files/figure-html/unnamed-chunk-8-1.png)
+
+``` r
+peirceS <- planisphere::project(
+                            x = world,
+                            proj = "PeirceQuincuncial",
+                            rotate = c(-25, 90, 180),
+                            additional_layers = TRUE
+                            )
+display(peirceS)
+```
+
+![](hello_planisphere_files/figure-html/unnamed-chunk-9-1.png)
+
 Peters (upside down)
 
 ``` r
@@ -133,7 +159,7 @@ peters <- planisphere::project(
 display(peters)
 ```
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-8-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-10-1.png)
 
 ``` r
 polar <- planisphere::project(
@@ -146,7 +172,7 @@ polar <- planisphere::project(
 display(polar)
 ```
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-9-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-11-1.png)
 
 projection: d3.geoCylindricalEqualArea().parallel(45).rotate(\[167,
 180\]),
@@ -168,8 +194,8 @@ hao <- planisphere::project(
 display(hao)
 ```
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-10-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-12-1.png)
 
 ## Gallery
 
-![](hello_planisphere_files/figure-html/unnamed-chunk-11-1.png)
+![](hello_planisphere_files/figure-html/unnamed-chunk-13-1.png)

@@ -10,9 +10,8 @@ project(
   rotate = NULL,
   reflectX = NULL,
   reflectY = NULL,
-  scale = 6378137,
+  scale = 500,
   center = NULL,
-  reverse = TRUE,
   clip = TRUE,
   graticule = c(10, 10),
   additional_layers = FALSE,
@@ -35,8 +34,6 @@ project(
 \item{scale}{Projection scale factor (D3 spherical scale, not planar CRS units).}
 
 \item{center}{Optional projection center.}
-
-\item{reverse}{If TRUE, flips the Y axis for display consistency in R plots.}
 
 \item{clip}{If TRUE, clips the projected geometries to the projected sphere.}
 

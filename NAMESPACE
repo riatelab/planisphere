@@ -3,3 +3,4 @@
 export(display)
 export(new_v8_context)
 export(project)
+export(registry)

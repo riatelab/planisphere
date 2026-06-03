@@ -59,5 +59,7 @@ world <- st_read(
 )
 
 result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+#> Error in clean(x): object 'world' not found
 planisphere::display(result)
+#> Error: object 'result' not found
 ```

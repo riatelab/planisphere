@@ -18,7 +18,6 @@
 #' @param reflectY Logical; whether to reflect the projection on the Y axis.
 #' @param scale Projection scale factor (D3 spherical scale, not planar CRS units).
 #' @param center Optional projection center.
-#' @param reverse If TRUE, flips the Y axis for display consistency in R plots.
 #' @param clip If TRUE, clips the projected geometries to the projected sphere.
 #' @param graticule Numeric vector of longitude/latitude step size for graticule generation.
 #' @param additional_ayers Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.
@@ -54,9 +53,8 @@ project <- function(
     rotate = NULL,
     reflectX = NULL,
     reflectY = NULL,
-    scale = 6378137,
+    scale = 500,
     center = NULL,
-    reverse = TRUE,
     clip = TRUE,
     graticule = c(10,10),
     additional_layers = FALSE,
@@ -65,29 +63,40 @@ project <- function(
     ...
 ) {
   
-  geojson <- geojsonsf::sf_geojson(x)
+  
+  # post-processing
+  if (clip) {
+    geojson <- geojsonsf::sf_geojson(clean(x))
+  } else {
+    geojson <- geojsonsf::sf_geojson(x)
+  }
   
   # build projection chain in R 
   proj_chain <- build_projection_chain(
     proj = proj,
     rotate = rotate,
     reflectX = reflectX,
+    reflectY = reflectY,
     scale = scale,
     center = center,
     verbose = verbose,
     ...
   )
   
+  
+  # JS operations
   ct$assign("geojson", geojson)
   ct$assign("proj_chain", proj_chain)
   ct$assign("graticule_step", graticule)
+  ct$assign("clip", clip && !grepl("orthographic", proj, ignore.case = TRUE))
   
   js <- "
   function project(geojson, proj_chain) {
     const geo = JSON.parse(geojson);
     const proj = eval(proj_chain);
     const basemap = d3.geoProject(geo, proj);
-    const sphere = d3.geoProject({ type: 'Sphere' }, proj);
+    const sphereRaw = d3.geoProject({ type: 'Sphere' }, proj);
+    const sphere = clip ? shrinkGeometry(sphereRaw, 0.99) : sphereRaw
     const graticule = d3.geoProject(d3.geoGraticule().step(graticule_step)(), proj)
     return {
       sphere: JSON.stringify(sphere),
@@ -117,19 +126,19 @@ project <- function(
   sf::st_crs(graticule) <- NA
   
   # post-processing
+  # special fix for orthographic projection
   
+  if (!grepl("orthographic", proj, ignore.case = TRUE)) {
   basemap <- sf::st_make_valid(basemap)
   graticule <- sf::st_make_valid(graticule)
   sphere <- sf::st_make_valid(sphere)
-
-  if (reverse) {
-    basemap <- flipY(basemap)
-    sphere <- flipY(sphere)
-    graticule <- flipY(graticule)
-  }
+}
   
+  basemap <- flipY(basemap)
+  sphere <- flipY(sphere)
+  graticule <- flipY(graticule)
   
-  if (clip) {
+  if (clip && !grepl("orthographic", proj, ignore.case = TRUE)) {
     basemap <- sf::st_intersection(basemap, sphere)
     graticule <- sf::st_intersection(graticule, sphere)
   }

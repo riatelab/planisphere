@@ -66,5 +66,5 @@ ct <- planisphere::new_v8_context()
 #> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
 #> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
 #> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
-#> Planisphere ready
+#> Planisphere is ready 🌐
 ```
