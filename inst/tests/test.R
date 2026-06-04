@@ -12,3 +12,6 @@ library(planisphere)
 
 planisphere::gallery(sample = NULL)
 plot(world)
+
+result <- planisphere::project(x = world, proj = "EqualEarth"                        )
+planisphere::display(result)

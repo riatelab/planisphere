@@ -55,8 +55,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="planisphere-">planisphere <img src="reference/figures/planisphere.png" align="right" width="200"><a class="anchor" aria-label="anchor" href="#planisphere-"></a>
 </h1></div>
-<p><strong>Map projections</strong></p>
-<p>This package provides access to a wide range of cartographic projections. Built on the <code>V8</code> engine, it wraps the <code>D3.js</code> libraries <code>d3-geo</code>, <code>d3-geo-projection</code>, and <code>d3-geo-polygon</code>. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.</p>
+<p><strong>This package provides access to a wide range of map projections. It allows spatial data frames containing geographic coordinates (latitude/longitude) to be projected. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.</strong></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -68,14 +67,12 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The package provides three main functions.</p>
+<p>The package provides two main functions.</p>
 <ul>
 <li>
-<code><a href="reference/project.html">project()</a></code> applies a map projection to geometries.</li>
+<code><a href="reference/project.html">project()</a></code> applies a map projection to a spatial dataframe.</li>
 <li>
-<code><a href="reference/display.html">display()</a></code> renders the projected result.</li>
-<li>
-<code><a href="reference/new_v8_context.html">new_v8_context()</a></code> allow to initialize a new V8 engine with custom JavaScript libraries.</li>
+<code><a href="reference/display.html">display()</a></code> plot the projected result.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
@@ -85,19 +82,40 @@
 <span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ct</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span><span class="va">ct</span>, x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedMollweide"</span><span class="op">)</span></span>
-<span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<p>These three operations can be chained using the pipe operator <code>|&gt;</code>.</p>
+<code class="sourceCode R"><span><span class="va">equal</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"EqualEarth"</span><span class="op">)</span></span>
+<span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">equal</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/EqualEarth.png" width="100%"></p>
+<p>With <code>additional_layers = TRUE</code>, you can retrieve, along with your projected map basemap, the sphere and the graticules. As previoulsy, you can visualize them directly using the <code><a href="reference/display.html">display()</a></code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedMollweide"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mollweide</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
+<span>                                  proj <span class="op">=</span> <span class="st">"InterruptedMollweide"</span>,</span>
+<span>                                  additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>                                  <span class="op">)</span></span>
+<span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">mollweide</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/InterruptedMollweide.png" width="100%"></p>
+<p>You can customize projections using dedicated parameters. For example, to obtain a polar projection:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">polar</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
+<span>                                  proj <span class="op">=</span> <span class="st">"AzimuthalEquidistant"</span>,</span>
+<span>                                  clipAngle <span class="op">=</span> <span class="fl">150</span>,</span>
+<span>                                  rotate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">90</span><span class="op">)</span>,</span>
+<span>                                  additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>                                  <span class="op">)</span></span>
+<span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">polar</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/polar.png" width="100%"></p>
 </div>
 <div class="section level2">
-<h2 id="what-projection-functions-can-i-use">What projection functions can I use?<a class="anchor" aria-label="anchor" href="#what-projection-functions-can-i-use"></a>
+<h2 id="projections-available">Projections available<a class="anchor" aria-label="anchor" href="#projections-available"></a>
 </h2>
-<p>By défault, the projection functions available in this package are those provided by the three underlying JavaScript libraries. Please refer to the documentation of these libraries to see what is available.</p>
+<p>The package provides more than a hundred map projections. To retrieve their names, you can use the <code><a href="reference/registry.html">registry()</a></code> function.</p>
+<p>With the <code><a href="reference/gallery.html">gallery()</a></code> function, you can quickly visualize a set of projections at a glance. By default, the function displays 12 randomly selected projections. Here is an example.</p>
+<p><img src="reference/figures/gallery.png" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="under-the-hood">Under the hood<a class="anchor" aria-label="anchor" href="#under-the-hood"></a>
+</h2>
+<p>Under the hood, this package executes JavaScript code. It is built on the V8 engine, using a context with default libraries preloaded. However, you can also create a new context and load additional libraries using the <code><a href="reference/new_v8_context.html">new_v8_context()</a></code> function.</p>
+<p>By default, this package exposes the projection functions provided by three JavaScript libraries from the D3 ecosystem. We are grateful to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors who have helped develop and maintain these powerful geospatial tools.</p>
 <ul>
 <li>
 <code>d3-geo</code>: <a href="https://d3js.org/d3-geo/projection" class="external-link uri">https://d3js.org/d3-geo/projection</a>
@@ -109,18 +127,13 @@
 <code>d3-geo-polygon</code>: <a href="https://github.com/d3/d3-geo-polygon" class="external-link uri">https://github.com/d3/d3-geo-polygon</a>
 </li>
 </ul>
-<p>Thanks to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors to these libraries who have worked on developing spatial functions within the D3.js ecosystem.</p>
-<p>For example, in the package, you can directly use <code>"d3.geoRhombic()"</code>, or simply <code>"geoRhombic"</code> or <code>"Rhombic"</code>. Be careful: uppercase and lowercase letters are important.</p>
-<p>All projection functions are configurable. For example, to obtain a polar projection, you can write:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span><span class="va">ct</span>, x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"d3.geoAzimuthalEquidistant().rotate([0, -90]).clipAngle(150)"</span><span class="op">)</span></span></code></pre></div>
-<p>or</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>planisphere<span class="sc">::</span><span class="fu">project</span>(ct,</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                     <span class="at">x =</span> world,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                     <span class="at">proj =</span> <span class="st">"AzimuthalEquidistant"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                     <span class="at">rotate =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">90</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                     <span class="at">clipAngle =</span> <span class="dv">150</span><span class="st">"</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="st">                     )</span></span></code></pre></div>
+<p>For details on the available projections and their parameters, please refer to the documentation of these libraries.</p>
+<p>In addition, a custom script for the Spilhaus projection has been added (thanks to Torben Jansen).</p>
+</div>
+<div class="section level2">
+<h2 id="community-guidelines">Community Guidelines<a class="anchor" aria-label="anchor" href="#community-guidelines"></a>
+</h2>
+<p>One can contribute to the package through <a href="https://github.com/neocarto/planisphere/pulls" class="external-link">pull requests</a> and report issues or ask questions <a href="https://github.com/neocarto/planisphere/issues" class="external-link">here</a></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

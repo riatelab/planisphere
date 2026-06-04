@@ -1,8 +1,6 @@
 # planisphere <img src="man/figures/planisphere.png" align="right" width="200"/>
 
-**Map projections**
-
-This package provides access to a wide range of cartographic projections. Built on the `V8` engine, it wraps the `D3.js` libraries `d3-geo`, `d3-geo-projection`, and `d3-geo-polygon`. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.
+**This package provides access to a wide range of map projections. It allows spatial data frames containing geographic coordinates (latitude/longitude) to be projected. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.**
 
 ## Installation
 
@@ -17,14 +15,8 @@ remotes::install_github("riatelab/planisphere")
 
 The package provides two main functions.
 
-- `project()` applies a map projection to geometries.
-- `display()` renders the projected result.
-
-In addition, the package provides helper functions to assist you in using and configuring it.
-
-- `registry()` returns the list of available projections.
-- `gallery()` allows you to visualize them.
-- `new_v8_context()` allow to initialize a new V8 engine with custom JavaScript libraries.
+- `project()` applies a map projection to a spatial dataframe.
+- `display()` plot the projected result.
 
 ``` r
 library(sf)
@@ -36,49 +28,62 @@ world <- st_read(
 ```
 
 ``` r
-result <- planisphere::project(x = world, proj = "InterruptedMollweide")
-planisphere::display(result)
+equal <- planisphere::project(x = world, proj = "EqualEarth")
+planisphere::display(equal)
 ```
 
-With `additional_layers = TRUE`, you retrieve, along with your projected map basemap, the sphere and the graticules. You can visualize them directly using the `display()` function.
+<img src="man/figures/EqualEarth.png" width="100%"/>
+
+With `additional_layers = TRUE`, you can retrieve, along with your projected map basemap, the sphere and the graticules. As previoulsy, you can visualize them directly using the `display()` function.
 
 ``` r
-result <- planisphere::project(x = world, proj = "InterruptedMollweide",
-                               additional_layers = TRUE)
-planisphere::display(result)
+mollweide <- planisphere::project(x = world,
+                                  proj = "InterruptedMollweide",
+                                  additional_layers = TRUE
+                                  )
+planisphere::display(mollweide)
 ```
 
-## What projection functions can I use?
+<img src="man/figures/InterruptedMollweide.png" width="100%"/>
 
-By défault, the projection functions available in this package are those provided by the three underlying JavaScript libraries. Please refer to the documentation of these libraries to see what is available.
+You can customize projections using dedicated parameters. For example, to obtain a polar projection:
+
+``` r
+polar <- planisphere::project(x = world,
+                                  proj = "AzimuthalEquidistant",
+                                  clipAngle = 150,
+                                  rotate = c(0, -90),
+                                  additional_layers = TRUE
+                                  )
+planisphere::display(polar)
+```
+
+<img src="man/figures/polar.png" width="100%"/>
+
+## Projections available
+
+The package provides more than a hundred map projections. To retrieve their names, you can use the `registry()` function.
+
+With the `gallery()` function, you can quickly visualize a set of projections at a glance. By default, the function displays 12 randomly selected projections. Here is an example.
+
+<img src="man/figures/gallery.png" width="100%"/>
+
+## Under the hood
+
+Under the hood, this package executes JavaScript code. It is built on the V8 engine, using a context with default libraries preloaded. However, you can also create a new context and load additional libraries using the `new_v8_context()` function.
+
+By default, this package exposes the projection functions provided by three JavaScript libraries from the D3 ecosystem. We are grateful to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors who have helped develop and maintain these powerful geospatial tools.
 
 - `d3-geo`: https://d3js.org/d3-geo/projection
 - `d3-geo-projection`: https://github.com/d3/d3-geo-projection
 - `d3-geo-polygon`: https://github.com/d3/d3-geo-polygon
 
-Thanks to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors to these libraries who have worked on developing spatial functions within the D3.js ecosystem.
+For details on the available projections and their parameters, please refer to the documentation of these libraries.
 
-Custom script for Spilhaus projection (Thanks to xxxx)
+In addition, a custom script for the Spilhaus projection has been added (thanks to Torben Jansen).
 
+## Community Guidelines
 
-For example, in the package, you can directly use `"d3.geoRhombic()"`, or simply `"geoRhombic"` or `"Rhombic"`. Be careful: uppercase and lowercase letters are important.
-
-All projection functions are configurable. For example, to obtain a polar projection, you can write:
-
-
-``` r
-planisphere::project(ct, x = world, proj = "d3.geoAzimuthalEquidistant().rotate([0, -90]).clipAngle(150)")
-```
-
-or
-
-``` r
-planisphere::project(ct,
-                     x = world,
-                     proj = "AzimuthalEquidistant",
-                     rotate = c(0, -90),
-                     clipAngle = 150"
-                     )
-```
-
-
+One can contribute to the package through [pull
+requests](https://github.com/neocarto/planisphere/pulls) and report issues or
+ask questions [here](https://github.com/neocarto/planisphere/issues)

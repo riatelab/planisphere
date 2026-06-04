@@ -1,5 +1,6 @@
 // Spilhaus projection (D3 V8 compatible)
 // Requires d3-geo already loaded in global `d3`
+// Thanks to Torben Jansen
 
 function ellipticF(phi, m) {
   const { abs, atan, ln, PI: pi, sin, sqrt } = Math;
@@ -14,23 +15,23 @@ function ellipticF(phi, m) {
 
   if (h >= 1 || abs(phi) === pi / 2) {
     if (k <= TOL) return sp < 0 ? -Infinity : Infinity;
-    (m = 1), (h = m), (m += k);
+    ((m = 1), (h = m), (m += k));
     while (abs(h - k) > C1 * m) {
       k = sqrt(h * k);
-      (m /= 2), (h = m), (m += k);
+      ((m /= 2), (h = m), (m += k));
     }
     return sp < 0 ? -pi / m : pi / m;
   } else {
     if (k <= TOL) return ln((1 + sp) / (1 - sp)) / 2;
     let g, n, p, r, y;
-    (m = 1), (n = 0), (g = m), (p = m * k), (m += k);
+    ((m = 1), (n = 0), (g = m), (p = m * k), (m += k));
     y = sqrt((1 - h) / h);
     if (abs((y -= p / y)) <= 0) y = C2 * sqrt(p);
 
     while (abs(g - k) > C1 * g) {
-      (k = 2 * sqrt(p)), (n += n);
+      ((k = 2 * sqrt(p)), (n += n));
       if (y < 0) n += 1;
-      (p = m * k), (g = m), (m += k);
+      ((p = m * k), (g = m), (m += k));
       if (abs((y -= p / y)) <= 0) y = C2 * sqrt(p);
     }
 
@@ -70,6 +71,7 @@ function spilhausSquareRaw(lambda, phi) {
 
 // ✔ IMPORTANT: no import, no module d3
 globalThis.Spilhaus = function () {
-  return d3.geoProjection(spilhausSquareRaw)
+  return d3
+    .geoProjection(spilhausSquareRaw)
     .rotate([-66.94970198, 49.56371678, 40.17823482]);
 };
