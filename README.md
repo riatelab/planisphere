@@ -1,4 +1,4 @@
-# planisphere <img src="man/figures/planisphere.png" align="right" width="120"/>
+# planisphere <img src="man/figures/planisphere.png" align="right" width="200"/>
 
 **Map projections**
 
@@ -15,10 +15,15 @@ remotes::install_github("riatelab/planisphere")
 
 ## Usage
 
-The package provides three main functions.
+The package provides two main functions.
 
 - `project()` applies a map projection to geometries.
 - `display()` renders the projected result.
+
+In addition, the package provides helper functions to assist you in using and configuring it.
+
+- `registry()` returns the list of available projections.
+- `gallery()` allows you to visualize them.
 - `new_v8_context()` allow to initialize a new V8 engine with custom JavaScript libraries.
 
 ``` r
@@ -31,17 +36,16 @@ world <- st_read(
 ```
 
 ``` r
-ct <- planisphere::init()
-result <- planisphere::project(ct, x = world, proj = "geoInterruptedMollweide")
+result <- planisphere::project(x = world, proj = "InterruptedMollweide")
 planisphere::display(result)
 ```
 
-These three operations can be chained using the pipe operator `|>`.
+With `additional_layers = TRUE`, you retrieve, along with your projected map basemap, the sphere and the graticules. You can visualize them directly using the `display()` function.
 
 ``` r
-planisphere::init() |> 
-  planisphere::project(x = world, proj = "geoInterruptedMollweide") |>
-  planisphere::display()
+result <- planisphere::project(x = world, proj = "InterruptedMollweide",
+                               additional_layers = TRUE)
+planisphere::display(result)
 ```
 
 ## What projection functions can I use?
@@ -53,6 +57,8 @@ By défault, the projection functions available in this package are those provid
 - `d3-geo-polygon`: https://github.com/d3/d3-geo-polygon
 
 Thanks to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors to these libraries who have worked on developing spatial functions within the D3.js ecosystem.
+
+Custom script for Spilhaus projection (Thanks to xxxx)
 
 
 For example, in the package, you can directly use `"d3.geoRhombic()"`, or simply `"geoRhombic"` or `"Rhombic"`. Be careful: uppercase and lowercase letters are important.

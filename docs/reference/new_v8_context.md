@@ -8,8 +8,8 @@ stack.
 ``` r
 new_v8_context(
   libs = c("https://cdn.jsdelivr.net/npm/d3@7", "https://cdn.jsdelivr.net/npm/d3-geo@3",
-    "https://cdn.jsdelivr.net/npm/d3-geo-projection@4",
-    "https://cdn.jsdelivr.net/npm/d3-geo-polygon@1"),
+    "https://cdn.jsdelivr.net/npm/d3-geo-polygon@2",
+    "https://cdn.jsdelivr.net/npm/d3-geo-projection@4"),
   verbose = TRUE
 )
 ```
@@ -64,7 +64,7 @@ ct <- planisphere::new_v8_context()
 #> Loading additional JavaScript libraries
 #> ✔ https://cdn.jsdelivr.net/npm/d3@7
 #> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
+#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
 #> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
 #> Planisphere is ready 🌐
 ```

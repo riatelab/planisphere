@@ -77,11 +77,11 @@ library(planisphere)
 
     ## ✔ d3 (7.9.0)
 
-    ## ✔ d3-geo (3.1.1)
+    ## ✔ d3-geo-polygon (2.0.1)
 
     ## ✔ d3-geo-projection (4.0.0)
 
-    ## ✔ d3-geo-polygon (1.12.1)
+    ## ✔ d3-geo (3.1.1)
 
     ## ✔ additional script (spilhaus.js)
 

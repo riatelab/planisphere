@@ -11,8 +11,8 @@
 #' @export
 #'
 #' @examples
-#' planisphere_projections()
-#' planisphere_projections("core")
+#' planisphere::registry()
+#' planisphere::registry(type = "core")
 registry <- function(type = NULL) {
   
   registry <- d3_geo_projections

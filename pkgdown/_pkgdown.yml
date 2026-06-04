@@ -30,6 +30,8 @@ reference:
       - project
       - display
       - new_v8_context
+      - registry
+      - gallery
 
 figures:
   dev: grDevices::png

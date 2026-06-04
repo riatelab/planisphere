@@ -14,7 +14,7 @@ project(
   rotate = NULL,
   reflectX = NULL,
   reflectY = NULL,
-  scale = 1,
+  scale = 500,
   center = NULL,
   clip = TRUE,
   graticule = c(10, 10),

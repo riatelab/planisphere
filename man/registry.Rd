@@ -7,8 +7,8 @@
 registry(type = NULL)
 }
 \arguments{
-\item{type}{Projection family: "core", "extended",
-"polyhedral", "special".}
+\item{type}{Projection family: "core", "continuous",
+"discontinuous", "quincuncial", "advanced"}
 }
 \value{
 A character vector or data.frame of projection names.
@@ -18,6 +18,6 @@ Returns projections from the planisphere registry
 (d3-geo, d3-geo-projection, d3-geo-polygon).
 }
 \examples{
-planisphere_projections()
-planisphere_projections("core")
+planisphere::registry()
+planisphere::registry(type = "core")
 }
