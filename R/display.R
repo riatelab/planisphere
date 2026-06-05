@@ -36,46 +36,66 @@
 #'   quiet = TRUE
 #' )
 #'
-#' result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+#' result <- planisphere::project(
+#'   x = world,
+#'   proj = "Eckert1",
+#'   additional_layers = TRUE
+#' )
 #' planisphere::display(result)
-display <- function(x, title = NULL) {
-  
-    mar_top <- if (!is.null(title)) 2 else 0
-    op <- par(
-      mar = c(0, 0, mar_top, 0),
-      bg = "white"
-    )
+display <- function(x, title = NULL, extent = NULL) {
+  mar_top <- if (!is.null(title)) 2 else 0
+  op <- par(
+    mar = c(0, 0, mar_top, 0),
+    bg = "white"
+  )
   on.exit(par(op))
-  
+
   if (is.list(x) && !inherits(x, "sf")) {
-    
-    plot(sf::st_geometry(x$sphere),
-         col = "#F5F5F5",
-         border = NA)
-    
+    if (is.null(extent)) {
+      plot(sf::st_geometry(x$sphere),
+        col = "#F5F5F5",
+        border = NA
+      )
+    } else {
+      plot(sf::st_geometry(x$sphere),
+        extent = extent,
+        col = "#F5F5F5",
+        border = NA
+      )
+    }
     plot(sf::st_geometry(x$graticule),
-         col = "#D0D0D0",
-         lwd = 0.5,
-         add = TRUE)
-    
+      col = "#D0D0D0",
+      lwd = 0.5,
+      add = TRUE
+    )
+
     plot(sf::st_geometry(x$basemap),
-         col = "#222222",
-         border = NA,
-         add = TRUE)
-    
+      col = "#222222",
+      border = NA,
+      add = TRUE
+    )
+
     plot(sf::st_geometry(x$sphere),
-         col = NA,
-         border = "#666666",
-         lwd = 1.2,
-         add = TRUE)
-    
+      col = NA,
+      border = "#666666",
+      lwd = 1.2,
+      add = TRUE
+    )
   } else {
-    
-    plot(sf::st_geometry(x),
-         col = "#222222",
-         border = NA)
+    if (is.null(extent)) {
+      plot(sf::st_geometry(x),
+        col = "#222222",
+        border = NA
+      )
+    } else {
+      plot(sf::st_geometry(x),
+        extent = extent,
+        col = "#222222",
+        border = NA
+      )
+    }
   }
-  
+
   if (!is.null(title)) {
     title(main = title, line = 0.5)
   }

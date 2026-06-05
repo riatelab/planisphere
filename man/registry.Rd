@@ -2,22 +2,38 @@
 % Please edit documentation in R/registry.R
 \name{registry}
 \alias{registry}
-\title{List available projections}
+\title{List available map projections}
 \usage{
 registry(type = NULL)
 }
 \arguments{
-\item{type}{Projection family: "core", "continuous",
-"discontinuous", "quincuncial", "advanced"}
+\item{type}{Character. Optional projection family. Must be one of:
+"cylindrical", "conic", "azimuthal", "perspective",
+"pseudocylindrical", "interrupted", "polyhedral",
+"quincuncial", "regional", "pseudoazimuthal", "miscellaneous".}
 }
 \value{
-A character vector or data.frame of projection names.
+A sorted unique character vector of projection names.
+If `type` is provided, only projections belonging to the selected family
+are returned.
 }
 \description{
-Returns projections from the planisphere registry
-(d3-geo, d3-geo-projection, d3-geo-polygon).
+Returns the list of available map projections registered in
+\pkg{planisphere}. Projections are organized into thematic families
+to facilitate exploration and selection.
+
+By default, all projections are returned as a single sorted character vector.
+Alternatively, a specific family of projections can be requested.
 }
 \examples{
-planisphere::registry()
-planisphere::registry(type = "core")
+# List all available projections
+
+# List cylindrical projections
+registry(type = "cylindrical")
+
+# Explore regional projections
+registry("regional")
+
+# Visualize polyhedral projections
+gallery(projections = registry("polyhedral"), verbose = FALSE)
 }

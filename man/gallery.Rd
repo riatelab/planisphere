@@ -2,24 +2,60 @@
 % Please edit documentation in R/gallery.R
 \name{gallery}
 \alias{gallery}
-\title{Overview of map projections}
+\title{Display a gallery of map projections}
 \usage{
-gallery(sample = 12, projections = NULL, ncol = 4)
+gallery(
+  projections = NULL,
+  sample = 12,
+  ncol = 4,
+  title = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
-\item{sample}{nb of maps to display (randomly)}
+\item{projections}{Character vector of projection names. If `NULL`,
+projections are selected from `registry()`.}
 
-\item{projections}{vector of projection names}
+\item{sample}{Integer. Number of projections to display when
+`projections = NULL`. Ignored if `projections` is provided.
+Set to `NULL` to display all available projections.}
 
-\item{ncol}{ncol}
+\item{ncol}{Integer. Number of columns in the gallery layout.}
+
+\item{title}{Logical. Should projection names be displayed as titles?}
+
+\item{verbose}{Logical. Display progress messages while rendering
+projections.}
 }
 \value{
-a base R plot.
+Draws a gallery of projected maps in the current graphics device and
+returns `NULL` invisibly.
 }
 \description{
-Overview of map projections
+Creates a gallery of projected world maps using the projections
+available in \pkg{planisphere}. By default, a random sample of
+projections is selected from the projection registry and displayed
+in a multi-panel layout.
+}
+\details{
+The function uses the bundled world land dataset and applies each
+selected projection through [project()]. Maps are displayed using
+[display()] in a base R graphics layout.
 }
 \examples{
-projs <- planisphere::registry(type = "core")
-planisphere::gallery(projs)
+# Display a random sample of 12 projections
+gallery(verbose = FALSE)
+
+# Display selected projections
+gallery(
+  projections = c(
+    "Mercator",
+    "Robinson",
+    "Orthographic",
+    "EqualEarth"
+  ),
+  ncol = 2,
+  verbose = FALSE
+)
+
 }

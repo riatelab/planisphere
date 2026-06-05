@@ -20,39 +20,40 @@
 #' A character string representing a D3.js projection chain.
 #'
 build_projection_chain <- function(proj = "geoSomething", verbose = FALSE, ...) {
-  
   extra <- list(...)
-  
+
 
   if (grepl("spilhaus", proj, ignore.case = TRUE)) {
     out <- "Spilhaus()"
     if (verbose) message("D3.js projection used: ", out)
     return(invisible(out))
   }
-  
+
   if (grepl("^\\s*d3\\.", proj)) {
     out <- proj
     if (verbose) message("D3.js projection used: ", out)
     return(invisible(out))
   }
-  
+
   if (!grepl("^geo", proj)) {
     proj <- paste0("geo", proj)
   }
-  
+
   chain <- paste0("d3.", proj, "()")
-  
+
   extra <- extra[!names(extra) %in% c("verbose", "clip", "graticule", "additional_layers")]
-  
+
   for (nm in names(extra)) {
     val <- extra[[nm]]
     if (is.null(val)) next
-    
-    js_val <- switch(
-      nm,
+    js_val <- switch(nm,
       rotate = paste0("[", paste(val, collapse = ","), "]"),
       center = paste0("[", paste(val, collapse = ","), "]"),
+      parallels = paste0("[", paste(val, collapse = ","), "]"),
       reflectX = tolower(as.character(val)),
+      clipExtent = paste0(
+        "[[", paste(val[[1]], collapse = ","), "],[", paste(val[[2]], collapse = ","), "]]"
+      ),
       scale = as.character(val),
       if (is.logical(val)) {
         tolower(as.character(val))
@@ -62,14 +63,14 @@ build_projection_chain <- function(proj = "geoSomething", verbose = FALSE, ...) 
         paste0('"', val, '"')
       }
     )
-    
+
     chain <- paste0(chain, ".", nm, "(", js_val, ")")
   }
-  
+
   if (verbose) {
     message("D3.js projection used: ", chain)
   }
-  
+
   invisible(chain)
 }
 
@@ -121,25 +122,21 @@ flipY <- function(x) {
 #' @noRd
 #'
 #' @return An sf object cleaned and clipped.
-clean <- function(x){
-  
-  x <- world
-  
+clean <- function(x) {
   margin <- 0.01
-  
   world_bbox <- sf::st_bbox(c(
     xmin = -180 + margin,
-    ymin = -90  + margin,
+    ymin = -90 + margin,
     xmax =  180 - margin,
-    ymax =  90  - margin
+    ymax =  90 - margin
   ), crs = sf::st_crs(4326))
-  
+
   world_sf <- sf::st_as_sfc(world_bbox)
-  
-  
+
+
   a <- sf::st_transform(x, 3857)
   b <- sf::st_transform(world_sf, 3857)
-  
+
   result <- suppressWarnings(sf::st_intersection(a, b))
   result <- sf::st_transform(result, 4326)
 }

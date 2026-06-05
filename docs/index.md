@@ -41,6 +41,13 @@ planisphere::display(equal)
 
 ![](reference/figures/EqualEarth.png)
 
+``` r
+imago <- planisphere::project(x = world, proj = "Imago")
+planisphere::display(imago)
+```
+
+![](reference/figures/imago.png)
+
 With `additional_layers = TRUE`, you can retrieve, along with your
 projected map basemap, the sphere and the graticules. As previoulsy, you
 can visualize them directly using the
@@ -72,7 +79,7 @@ planisphere::display(polar)
 
 ![](reference/figures/polar.png)
 
-## Projections available
+## 117 Projections available
 
 The package provides more than a hundred map projections. To retrieve
 their names, you can use the
@@ -106,11 +113,33 @@ these powerful geospatial tools.
 - `d3-geo-projection`: <https://github.com/d3/d3-geo-projection>
 - `d3-geo-polygon`: <https://github.com/d3/d3-geo-polygon>
 
-For details on the available projections and their parameters, please
-refer to the documentation of these libraries.
-
 In addition, a custom script for the Spilhaus projection has been added
 (thanks to Torben Jansen).
+
+For details on the available projections and their parameters, please
+refer to the documentation of these libraries. It is all the more
+interesting that you can directly pass a D3 function with all its
+parameters.
+
+For example
+
+``` r
+planisphere::projection(x = world, 
+                        proj = "AzimuthalEqualArea",
+                        rotate = c(-10, -52)
+                        )
+```
+
+is equivalent to
+
+``` r
+planisphere::projection(x = world, 
+                        proj = "d3.geoAzimuthalEqualArea().rotate([-10, 52])"
+                        )
+```
+
+This approach can be much more convenient if you are already familiar
+with the D3 ecosystem and used to working with it.
 
 ## Community Guidelines
 

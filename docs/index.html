@@ -37,7 +37,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/hello_planisphere.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/map_projections.html">Map projections</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -85,8 +85,12 @@
 <code class="sourceCode R"><span><span class="va">equal</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"EqualEarth"</span><span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">equal</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/EqualEarth.png" width="100%"></p>
-<p>With <code>additional_layers = TRUE</code>, you can retrieve, along with your projected map basemap, the sphere and the graticules. As previoulsy, you can visualize them directly using the <code><a href="reference/display.html">display()</a></code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">imago</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"Imago"</span><span class="op">)</span></span>
+<span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">imago</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/imago.png" width="100%"></p>
+<p>With <code>additional_layers = TRUE</code>, you can retrieve, along with your projected map basemap, the sphere and the graticules. As previoulsy, you can visualize them directly using the <code><a href="reference/display.html">display()</a></code> function.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mollweide</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
 <span>                                  proj <span class="op">=</span> <span class="st">"InterruptedMollweide"</span>,</span>
 <span>                                  additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -94,7 +98,7 @@
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">mollweide</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/InterruptedMollweide.png" width="100%"></p>
 <p>You can customize projections using dedicated parameters. For example, to obtain a polar projection:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polar</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
 <span>                                  proj <span class="op">=</span> <span class="st">"AzimuthalEquidistant"</span>,</span>
 <span>                                  clipAngle <span class="op">=</span> <span class="fl">150</span>,</span>
@@ -105,7 +109,7 @@
 <p><img src="reference/figures/polar.png" width="100%"></p>
 </div>
 <div class="section level2">
-<h2 id="projections-available">Projections available<a class="anchor" aria-label="anchor" href="#projections-available"></a>
+<h2 id="id_117-projections-available">117 Projections available<a class="anchor" aria-label="anchor" href="#id_117-projections-available"></a>
 </h2>
 <p>The package provides more than a hundred map projections. To retrieve their names, you can use the <code><a href="reference/registry.html">registry()</a></code> function.</p>
 <p>With the <code><a href="reference/gallery.html">gallery()</a></code> function, you can quickly visualize a set of projections at a glance. By default, the function displays 12 randomly selected projections. Here is an example.</p>
@@ -127,8 +131,20 @@
 <code>d3-geo-polygon</code>: <a href="https://github.com/d3/d3-geo-polygon" class="external-link uri">https://github.com/d3/d3-geo-polygon</a>
 </li>
 </ul>
-<p>For details on the available projections and their parameters, please refer to the documentation of these libraries.</p>
 <p>In addition, a custom script for the Spilhaus projection has been added (thanks to Torben Jansen).</p>
+<p>For details on the available projections and their parameters, please refer to the documentation of these libraries. It is all the more interesting that you can directly pass a D3 function with all its parameters.</p>
+<p>For example</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu">projection</span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, </span>
+<span>                        proj <span class="op">=</span> <span class="st">"AzimuthalEqualArea"</span>,</span>
+<span>                        rotate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">52</span><span class="op">)</span></span>
+<span>                        <span class="op">)</span></span></code></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu">projection</span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, </span>
+<span>                        proj <span class="op">=</span> <span class="st">"d3.geoAzimuthalEqualArea().rotate([-10, 52])"</span></span>
+<span>                        <span class="op">)</span></span></code></pre></div>
+<p>This approach can be much more convenient if you are already familiar with the D3 ecosystem and used to working with it.</p>
 </div>
 <div class="section level2">
 <h2 id="community-guidelines">Community Guidelines<a class="anchor" aria-label="anchor" href="#community-guidelines"></a>

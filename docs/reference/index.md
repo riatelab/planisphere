@@ -9,6 +9,6 @@
 - [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md)
   : New V8 context
 - [`registry()`](https://rneocarto.github.io/planisphere/reference/registry.md)
-  : List available projections
+  : List available map projections
 - [`gallery()`](https://rneocarto.github.io/planisphere/reference/gallery.md)
-  : Overview of map projections
+  : Display a gallery of map projections

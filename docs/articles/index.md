@@ -2,5 +2,5 @@
 
 ### All vignettes
 
-- [Hello
-  planisphere](https://rneocarto.github.io/planisphere/articles/hello_planisphere.md):
+- [Map
+  projections](https://rneocarto.github.io/planisphere/articles/map_projections.md):

@@ -37,59 +37,59 @@
 #' @examples
 #' ct <- planisphere::new_v8_context()
 new_v8_context <- function(
-    libs = c(
-      "https://cdn.jsdelivr.net/npm/d3@7",
-      "https://cdn.jsdelivr.net/npm/d3-geo@3",
-      "https://cdn.jsdelivr.net/npm/d3-geo-polygon@2",
-      "https://cdn.jsdelivr.net/npm/d3-geo-projection@4"
-    ),
-    verbose = TRUE
+  libs = c(
+    "https://cdn.jsdelivr.net/npm/d3@7",
+    "https://cdn.jsdelivr.net/npm/d3-geo@3",
+    "https://cdn.jsdelivr.net/npm/d3-geo-polygon@2",
+    "https://cdn.jsdelivr.net/npm/d3-geo-projection@4"
+  ),
+  verbose = TRUE
 ) {
-  
   ct <- V8::v8()
-  
+
   # V8 version (safe parsing)
   v8_version <- sub(
     ".*V8 engine ([0-9.]+)>.*",
     "\\1",
     capture.output(ct)[1]
   )
-  
+
   if (verbose) {
     message(sprintf(
       "V8 engine %s initialized",
       v8_version
     ))
-    
+
     # Only show message if libs is not NULL and not empty
     if (!is.null(libs) && length(libs) > 0) {
       message("Loading additional JavaScript libraries")
     }
   }
-  
+
   # Load libs if provided
   if (!is.null(libs) && length(libs) > 0) {
-    
     for (l in libs) {
-      
-      status <- tryCatch({
-        suppressWarnings(
-          suppressMessages(
-            ct$source(l)
+      status <- tryCatch(
+        {
+          suppressWarnings(
+            suppressMessages(
+              ct$source(l)
+            )
           )
-        )
-        "✔"
-      }, error = function(e) {
-        "✖"
-      })
-      
+          "✔"
+        },
+        error = function(e) {
+          "✖"
+        }
+      )
+
       if (verbose) {
         message(sprintf("%s %s", status, l))
       }
     }
   }
-  
+
   if (verbose) message("Planisphere is ready 🌐")
-  
+
   ct
 }

@@ -16,6 +16,9 @@ project(
   reflectY = NULL,
   scale = 500,
   center = NULL,
+  parallel = NULL,
+  parallels = NULL,
+  clipExtent = NULL,
   clip = TRUE,
   graticule = c(10, 10),
   additional_layers = FALSE,
@@ -54,6 +57,14 @@ project(
 - center:
 
   Optional projection center.
+
+- parallel:
+
+  Optional standard parallel of the projection
+
+- parallels:
+
+  Optional standard parallels of the projection
 
 - clip:
 
@@ -100,10 +111,6 @@ GIS pipelines that often rely on ellipsoidal datums (e.g., WGS84). As a
 result, this function is primarily intended for visualization and
 cartographic rendering rather than high-precision geodetic computation.
 
-## See also
-
-`init`
-
 ## Examples
 
 ``` r
@@ -113,6 +120,5 @@ world <- st_read(
   quiet = TRUE
 )
 
-result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
-#> Error in clean(x): object 'world' not found
+result <- planisphere::project(x = world, proj = "InterruptedBoggs")
 ```

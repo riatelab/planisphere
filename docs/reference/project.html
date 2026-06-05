@@ -19,7 +19,7 @@ where the Earth is modeled as a sphere rather than an ellipsoid."><meta property
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/hello_planisphere.html">Get started</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/map_projections.html">Map projections</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -53,6 +53,9 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
 <span>  reflectY <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scale <span class="op">=</span> <span class="fl">500</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  parallel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  parallels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  clipExtent <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  clip <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  graticule <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>,</span>
 <span>  additional_layers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -94,6 +97,14 @@ where the Earth is modeled as a sphere rather than an ellipsoid.</p>
 <dd><p>Optional projection center.</p></dd>
 
 
+<dt id="arg-parallel">parallel<a class="anchor" aria-label="anchor" href="#arg-parallel"></a></dt>
+<dd><p>Optional standard parallel of the projection</p></dd>
+
+
+<dt id="arg-parallels">parallels<a class="anchor" aria-label="anchor" href="#arg-parallels"></a></dt>
+<dd><p>Optional standard parallels of the projection</p></dd>
+
+
 <dt id="arg-clip">clip<a class="anchor" aria-label="anchor" href="#arg-clip"></a></dt>
 <dd><p>If TRUE, clips the projected geometries to the projected sphere.</p></dd>
 
@@ -128,10 +139,6 @@ perfect sphere, which differs from traditional GIS pipelines that often rely on 
 datums (e.g., WGS84). As a result, this function is primarily intended for visualization
 and cartographic rendering rather than high-precision geodetic computation.</p>
     </div>
-    <div class="section level2">
-    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>init</code></p></div>
-    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -141,8 +148,7 @@ and cartographic rendering rather than high-precision geodetic computation.</p>
 <span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">project</span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"geoInterruptedBoggs"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in clean(x):</span> object 'world' not found</span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu">project</span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"InterruptedBoggs"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

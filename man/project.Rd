@@ -12,6 +12,9 @@ project(
   reflectY = NULL,
   scale = 500,
   center = NULL,
+  parallel = NULL,
+  parallels = NULL,
+  clipExtent = NULL,
   clip = TRUE,
   graticule = c(10, 10),
   additional_layers = FALSE,
@@ -34,6 +37,10 @@ project(
 \item{scale}{Projection scale factor (D3 spherical scale, not planar CRS units).}
 
 \item{center}{Optional projection center.}
+
+\item{parallel}{Optional standard parallel of the projection}
+
+\item{parallels}{Optional standard parallels of the projection}
 
 \item{clip}{If TRUE, clips the projected geometries to the projected sphere.}
 
@@ -73,9 +80,6 @@ world <- st_read(
   quiet = TRUE
 )
 
-result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+result <- planisphere::project(x = world, proj = "InterruptedBoggs")
 
-}
-\seealso{
-\code{\link{init}}
 }

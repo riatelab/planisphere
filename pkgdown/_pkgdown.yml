@@ -17,12 +17,12 @@ template:
 
 navbar:
   structure:
-    left: [home, start, reference]
+    left: [home, mapproj, reference]
 
   components:
-    start:
-      text: Get started
-      href: articles/hello_planisphere.html
+    mapproj:
+      text: Map projections
+      href: articles/map_projections.html
 
 reference:
   - title: "Core API"

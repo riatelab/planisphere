@@ -4,7 +4,7 @@
 \alias{display}
 \title{Display a projected planisphere}
 \usage{
-display(x, title = NULL)
+display(x, title = NULL, extent = NULL)
 }
 \arguments{
 \item{x}{A list returned by \code{project()}, containing three \code{sf} objects:
@@ -41,7 +41,11 @@ world <- st_read(
   quiet = TRUE
 )
 
-result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
+result <- planisphere::project(
+  x = world,
+  proj = "Eckert1",
+  additional_layers = TRUE
+)
 planisphere::display(result)
 }
 \seealso{

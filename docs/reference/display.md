@@ -8,7 +8,7 @@ geographic features.
 ## Usage
 
 ``` r
-display(x, title = NULL)
+display(x, title = NULL, extent = NULL)
 ```
 
 ## Arguments
@@ -58,8 +58,10 @@ world <- st_read(
   quiet = TRUE
 )
 
-result <- planisphere::project(x = world, proj = "geoInterruptedBoggs")
-#> Error in clean(x): object 'world' not found
+result <- planisphere::project(
+  x = world,
+  proj = "Eckert1",
+  additional_layers = TRUE
+)
 planisphere::display(result)
-#> Error: object 'result' not found
 ```
