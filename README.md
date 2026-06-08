@@ -113,5 +113,5 @@ This approach can be much more convenient if you are already familiar with the D
 ## Community Guidelines
 
 One can contribute to the package through [pull
-requests](https://github.com/neocarto/planisphere/pulls) and report issues or
-ask questions [here](https://github.com/neocarto/planisphere/issues)
+requests](https://github.com/riatelab/planisphere/pulls) and report issues or
+ask questions [here](https://github.com/riatelab/planisphere/issues)
