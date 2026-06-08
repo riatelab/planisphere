@@ -8,7 +8,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 **Map projections**
 
-This package provides access to a wide range of map projections. It allows spatial data frames containing geographic coordinates (latitude/longitude) to be projected. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.**
+This package provides access to a wide range of map projections. It allows spatial data frames containing geographic coordinates (latitude/longitude) to be projected. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.
 
 ## Installation
 
