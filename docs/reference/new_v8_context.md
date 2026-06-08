@@ -39,13 +39,13 @@ from the jsDelivr CDN.
 
 The following JavaScript libraries are loaded by default:
 
-\- d3 (core library): https://cdn.jsdelivr.net/npm/d3@7 - d3-geo
+\- d3 (core library): https://cdn.jsdelivr.net/npm/d3 - d3-geo
 (spherical geometry and geographic projections):
-https://cdn.jsdelivr.net/npm/d3-geo@3 - d3-geo-projection (extended
+https://cdn.jsdelivr.net/npm/d3-geo - d3-geo-projection (extended
 cartographic projections):
-https://cdn.jsdelivr.net/npm/d3-geo-projection@4 - d3-geo-polygon
+https://cdn.jsdelivr.net/npm/d3-geo-projection - d3-geo-polygon
 (spherical polygon clipping):
-https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
+https://cdn.jsdelivr.net/npm/d3-geo-polygon
 
 These libraries are fetched dynamically at runtime from the jsDelivr
 CDN, ensuring that the most recent compatible versions are used unless
@@ -62,9 +62,9 @@ projections and geometric transformations.
 ct <- planisphere::new_v8_context()
 #> V8 engine 12.4.254.21 initialized
 #> Loading additional JavaScript libraries
-#> ✔ https://cdn.jsdelivr.net/npm/d3@7
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo@3
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
-#> ✔ https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-#> Planisphere is ready 🌐
+#> [OK] https://cdn.jsdelivr.net/npm/d3@7
+#> [OK] https://cdn.jsdelivr.net/npm/d3-geo@3
+#> [OK] https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
+#> [OK] https://cdn.jsdelivr.net/npm/d3-geo-projection@4
+#> Planisphere is ready
 ```

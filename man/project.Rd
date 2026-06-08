@@ -48,11 +48,13 @@ project(
 
 \item{graticule}{Numeric vector of longitude/latitude step size for graticule generation.}
 
+\item{additional_layers}{Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.}
+
+\item{verbose}{Logical. Display messages}
+
 \item{ct}{A custom V8 JavaScript context if needed. See \code{new_v8_context()}.}
 
 \item{...}{Additional parameters passed to the projection builder.}
-
-\item{additional_ayers}{Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.}
 }
 \value{
 If \code{additionalLayers = FALSE}, a single \code{sf} object corresponding to the projected basemap.

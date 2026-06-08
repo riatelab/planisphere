@@ -25,13 +25,16 @@ navbar:
       href: articles/map_projections.html
 
 reference:
-  - title: "Core API"
+  - title: "Package description"
+    contents:
+      - planisphere
+  - title: "All functions"
     contents:
       - project
       - display
-      - new_v8_context
       - registry
       - gallery
+      - new_v8_context
 
 figures:
   dev: grDevices::png

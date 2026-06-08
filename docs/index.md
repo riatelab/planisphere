@@ -1,19 +1,32 @@
 # planisphere ![](reference/figures/planisphere.png)
 
-**This package provides access to a wide range of map projections. It
+[![planisphere status
+badge](https://riatelab.r-universe.dev/planisphere/badges/version)](https://riatelab.r-universe.dev/planisphere)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+**Map projections**
+
+This package provides access to a wide range of map projections. It
 allows spatial data frames containing geographic coordinates
 (latitude/longitude) to be projected. Projection calculations are
 performed using spherical geometry rather than ellipsoidal geodetic
-models.**
+models.\*\*
 
 ## Installation
 
-The package source code is hosted on GitHub and can be installed using
-the `remotes` package.
+You can install the released version of `planisphere` from CRAN with:
 
 ``` r
-install.packages("remotes")
-remotes::install_github("riatelab/planisphere")
+install.packages("planisphere")
+```
+
+Alternatively, you can install the development version of `planisphere`
+from [r-universe](https://riatelab.r-universe.dev/planisphere) with:
+
+``` r
+install.packages("planisphere", repos = c("https://riatelab.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## Usage

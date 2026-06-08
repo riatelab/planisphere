@@ -1,19 +1,32 @@
 # planisphere ![](reference/figures/planisphere.png)
 
-**This package provides access to a wide range of map projections. It
+[![planisphere status
+badge](https://riatelab.r-universe.dev/planisphere/badges/version)](https://riatelab.r-universe.dev/planisphere)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+**Map projections**
+
+This package provides access to a wide range of map projections. It
 allows spatial data frames containing geographic coordinates
 (latitude/longitude) to be projected. Projection calculations are
 performed using spherical geometry rather than ellipsoidal geodetic
-models.**
+models.\*\*
 
 ## Installation
 
-The package source code is hosted on GitHub and can be installed using
-the `remotes` package.
+You can install the released version of `planisphere` from CRAN with:
 
 ``` r
-install.packages("remotes")
-remotes::install_github("riatelab/planisphere")
+install.packages("planisphere")
+```
+
+Alternatively, you can install the development version of `planisphere`
+from [r-universe](https://riatelab.r-universe.dev/planisphere) with:
+
+``` r
+install.packages("planisphere", repos = c("https://riatelab.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## Usage
@@ -150,18 +163,24 @@ issues or ask questions
 
 # Package index
 
-## Core API
+## Package description
+
+- [`planisphere-package`](https://rneocarto.github.io/planisphere/reference/planisphere.md)
+  [`planisphere`](https://rneocarto.github.io/planisphere/reference/planisphere.md)
+  : Package description
+
+## All functions
 
 - [`project()`](https://rneocarto.github.io/planisphere/reference/project.md)
   : Project geographic data using a D3.js projection
 - [`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
   : Display a projected planisphere
-- [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md)
-  : New V8 context
 - [`registry()`](https://rneocarto.github.io/planisphere/reference/registry.md)
   : List available map projections
 - [`gallery()`](https://rneocarto.github.io/planisphere/reference/gallery.md)
   : Display a gallery of map projections
+- [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md)
+  : New V8 context
 
 # Articles
 

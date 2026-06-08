@@ -231,7 +231,7 @@ hao <- planisphere::project(
 planisphere::display(hao, title = "≈ Hao Xiaoguang projection")
 ```
 
-# A last trick
+# One last trick
 
 The spherical model is less accurate than the geodesic model. Nevertheless, it can still provide a fairly good approximation of standard map projections. Let’s look at two geographic areas: France and Europe.
 

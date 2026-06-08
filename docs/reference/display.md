@@ -29,6 +29,11 @@ display(x, title = NULL, extent = NULL)
 
   Character string. Optional title to add to the plot. Default is NULL.
 
+- extent:
+
+  object. A spatial extent used to clip or define the mapping area
+  (\`sf\`, \`sfc\`, or \`bbox\`).
+
 ## Value
 
 a base R plot.
@@ -42,11 +47,6 @@ the package. The rendering order is: 1. Sphere background 2. Graticule
 All geometries are expected to be already projected in spherical
 coordinates. This function is intended for fast visualization and
 exploration of D3-based projections.
-
-## See also
-
-[`project`](https://rneocarto.github.io/planisphere/reference/project.md),
-`init`
 
 ## Examples
 

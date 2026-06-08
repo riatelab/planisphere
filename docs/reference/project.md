@@ -66,6 +66,10 @@ project(
 
   Optional standard parallels of the projection
 
+- clipExtent:
+
+  Projection’s viewport clip extent to the specified bounds in pixels
+
 - clip:
 
   If TRUE, clips the projected geometries to the projected sphere.
@@ -75,6 +79,16 @@ project(
   Numeric vector of longitude/latitude step size for graticule
   generation.
 
+- additional_layers:
+
+  Logical. If TRUE, adds graticule and sphere layers. In this case, the
+  function returns a list. If FALSE (default), it returns a spatial data
+  frame.
+
+- verbose:
+
+  Logical. Display messages
+
 - ct:
 
   A custom V8 JavaScript context if needed. See
@@ -83,12 +97,6 @@ project(
 - ...:
 
   Additional parameters passed to the projection builder.
-
-- additional_ayers:
-
-  Logical. If TRUE, adds graticule and sphere layers. In this case, the
-  function returns a list. If FALSE (default), it returns a spatial data
-  frame.
 
 ## Value
 

@@ -232,7 +232,7 @@ hao <- planisphere::project(
 
 ![](map_projections_files/figure-html/unnamed-chunk-16-1.png)
 
-## A last trick
+## One last trick
 
 The spherical model is less accurate than the geodesic model.
 Nevertheless, it can still provide a fairly good approximation of

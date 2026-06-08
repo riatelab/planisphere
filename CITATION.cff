@@ -1,0 +1,117 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "planisphere" in publications use:'
+type: software
+license: GPL-3.0-only
+title: 'planisphere: Map projections'
+version: 0.1.0
+abstract: A wrapper around D3.js for cartographic projections to design and visualize
+  world maps (planispheres). Projections are computed using D3.js spherical geometry
+  rather than ellipsoidal geodesic models.
+authors:
+- family-names: Lambert
+  given-names: Nicolas
+  email: nicolas.lambert@cnrs.fr
+  orcid: https://orcid.org/0000-0003-4976-6560
+repository-code: https://github.com/riatelab/planisphere
+url: https://riatelab.github.io/planisphere/
+contact:
+- family-names: Lambert
+  given-names: Nicolas
+  email: nicolas.lambert@cnrs.fr
+  orcid: https://orcid.org/0000-0003-4976-6560
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2026'
+  version: '>= 4.1.0'
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2026'
+- type: software
+  title: sf
+  abstract: 'sf: Simple Features for R'
+  notes: Imports
+  url: https://r-spatial.github.io/sf/
+  repository: https://CRAN.R-project.org/package=sf
+  authors:
+  - family-names: Pebesma
+    given-names: Edzer
+    email: edzer.pebesma@uni-muenster.de
+    orcid: https://orcid.org/0000-0001-8049-7069
+  year: '2026'
+  doi: 10.32614/CRAN.package.sf
+- type: software
+  title: V8
+  abstract: 'V8: Embedded JavaScript and WebAssembly Engine for R'
+  notes: Imports
+  url: https://jeroen.r-universe.dev/V8
+  repository: https://CRAN.R-project.org/package=V8
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroenooms@gmail.com
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2026'
+  doi: 10.32614/CRAN.package.V8
+- type: software
+  title: geojsonsf
+  abstract: 'geojsonsf: GeoJSON to Simple Feature Converter'
+  notes: Imports
+  url: https://github.com/SymbolixAU/geojsonsf
+  repository: https://CRAN.R-project.org/package=geojsonsf
+  authors:
+  - family-names: Cooley
+    given-names: David
+    email: dcooley@symbolix.com.au
+  year: '2026'
+  doi: 10.32614/CRAN.package.geojsonsf
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2026'
+  doi: 10.32614/CRAN.package.knitr
+- type: software
+  title: r2d3
+  abstract: 'r2d3: Interface to ''D3'' Visualizations'
+  notes: Suggests
+  url: https://rstudio.github.io/r2d3/
+  repository: https://CRAN.R-project.org/package=r2d3
+  authors:
+  - family-names: Strayer
+    given-names: Nick
+    email: nick.strayer@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: jluraschi@gmail.com
+  - family-names: Allaire
+    given-names: JJ
+  year: '2026'
+  doi: 10.32614/CRAN.package.r2d3
+
