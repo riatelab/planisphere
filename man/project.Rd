@@ -42,6 +42,8 @@ project(
 
 \item{parallels}{Optional standard parallels of the projection}
 
+\item{clipExtent}{Projection’s viewport clip extent to the specified bounds in pixels}
+
 \item{clip}{If TRUE, clips the projected geometries to the projected sphere.}
 
 \item{graticule}{Numeric vector of longitude/latitude step size for graticule generation.}

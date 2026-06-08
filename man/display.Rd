@@ -15,6 +15,8 @@ display(x, title = NULL, extent = NULL)
 }}
 
 \item{title}{Character string. Optional title to add to the plot. Default is NULL.}
+
+\item{extent}{object. A spatial extent used to clip or define the mapping area (`sf`, `sfc`, or `bbox`).}
 }
 \value{
 a base R plot.
@@ -47,7 +49,4 @@ result <- planisphere::project(
   additional_layers = TRUE
 )
 planisphere::display(result)
-}
-\seealso{
-\code{\link{project}}, \code{\link{init}}
 }

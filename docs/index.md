@@ -144,6 +144,6 @@ with the D3 ecosystem and used to working with it.
 ## Community Guidelines
 
 One can contribute to the package through [pull
-requests](https://github.com/neocarto/planisphere/pulls) and report
+requests](https://github.com/riatelab/planisphere/pulls) and report
 issues or ask questions
-[here](https://github.com/neocarto/planisphere/issues)
+[here](https://github.com/riatelab/planisphere/issues)

@@ -22,10 +22,9 @@
 #'   \item \code{graticule}: projected latitude/longitude grid
 #' }
 #' @param title Character string. Optional title to add to the plot. Default is NULL.
+#' @param extent object. A spatial extent used to clip or define the mapping area (`sf`, `sfc`, or `bbox`).
 #'
 #' @return a base R plot.
-#'
-#' @seealso \code{\link{project}}, \code{\link{init}}
 #'
 #' @export
 #'

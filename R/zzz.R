@@ -20,7 +20,7 @@
 
   packageStartupMessage(sprintf(
     "V8 engine %s initialized",
-    sub(".*V8 engine ([0-9.]+)>.*", "\\1", capture.output( .planisphere$ct)[1])
+    sub(".*V8 engine ([0-9.]+)>.*", "\\1", utils::capture.output( .planisphere$ct)[1])
   ))
   
   packageStartupMessage("Loading D3.js geospatial stack")
@@ -34,7 +34,7 @@
       .planisphere$ct$source(path)
       
       packageStartupMessage(sprintf(
-        "✔ %s (%s)",
+        "- %s (%s)",
         lib$name,
         lib$version
       ))
@@ -42,7 +42,7 @@
     }, error = function(e) {
       
       packageStartupMessage(sprintf(
-        "✖ %s failed to load",
+        "- %s failed to load",
         lib$name
       ))
     })
@@ -51,5 +51,5 @@
   # + some js helpers
   .planisphere$ct$source(file.path(js, "helpers.js"))
   
-  packageStartupMessage("Planisphere is ready 🌐")
+  packageStartupMessage("Planisphere is ready")
 }

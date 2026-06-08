@@ -21,9 +21,11 @@
 #' @param parallels Optional standard parallels of the projection
 #' @param parallel Optional standard parallel of the projection
 #' @param clip If TRUE, clips the projected geometries to the projected sphere.
+#' @param clipExtent Projection’s viewport clip extent to the specified bounds in pixels
 #' @param graticule Numeric vector of longitude/latitude step size for graticule generation.
 #' @param additional_ayers Logical. If TRUE, adds graticule and sphere layers. In this case, the function returns a list. If FALSE (default), it returns a spatial data frame.
 #' @param ct A custom V8 JavaScript context if needed. See \code{new_v8_context()}.
+#' @param verbose Logical. Display messages
 #' @param ... Additional parameters passed to the projection builder.
 #'
 #' @return

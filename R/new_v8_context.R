@@ -9,10 +9,10 @@
 #'
 #' The following JavaScript libraries are loaded by default:
 #'
-#' - d3 (core library): https://cdn.jsdelivr.net/npm/d3@7
-#' - d3-geo (spherical geometry and geographic projections): https://cdn.jsdelivr.net/npm/d3-geo@3
-#' - d3-geo-projection (extended cartographic projections): https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-#' - d3-geo-polygon (spherical polygon clipping): https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
+#' - d3 (core library): https://cdn.jsdelivr.net/npm/d3
+#' - d3-geo (spherical geometry and geographic projections): https://cdn.jsdelivr.net/npm/d3-geo
+#' - d3-geo-projection (extended cartographic projections): https://cdn.jsdelivr.net/npm/d3-geo-projection
+#' - d3-geo-polygon (spherical polygon clipping): https://cdn.jsdelivr.net/npm/d3-geo-polygon
 #'
 #' These libraries are fetched dynamically at runtime from the jsDelivr CDN,
 #' ensuring that the most recent compatible versions are used unless explicitly
@@ -51,7 +51,7 @@ new_v8_context <- function(
   v8_version <- sub(
     ".*V8 engine ([0-9.]+)>.*",
     "\\1",
-    capture.output(ct)[1]
+    utils::capture.output(ct)[1]
   )
 
   if (verbose) {
@@ -76,10 +76,10 @@ new_v8_context <- function(
               ct$source(l)
             )
           )
-          "✔"
+          "[OK]"
         },
         error = function(e) {
-          "✖"
+          "[FAIL]"
         }
       )
 
@@ -89,7 +89,7 @@ new_v8_context <- function(
     }
   }
 
-  if (verbose) message("Planisphere is ready 🌐")
+  if (verbose) message("Planisphere is ready")
 
   ct
 }

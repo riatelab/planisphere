@@ -31,10 +31,10 @@ the latest versions of the required D3.js libraries from the jsDelivr CDN.
 
 The following JavaScript libraries are loaded by default:
 
-- d3 (core library): https://cdn.jsdelivr.net/npm/d3@7
-- d3-geo (spherical geometry and geographic projections): https://cdn.jsdelivr.net/npm/d3-geo@3
-- d3-geo-projection (extended cartographic projections): https://cdn.jsdelivr.net/npm/d3-geo-projection@4
-- d3-geo-polygon (spherical polygon clipping): https://cdn.jsdelivr.net/npm/d3-geo-polygon@1
+- d3 (core library): https://cdn.jsdelivr.net/npm/d3
+- d3-geo (spherical geometry and geographic projections): https://cdn.jsdelivr.net/npm/d3-geo
+- d3-geo-projection (extended cartographic projections): https://cdn.jsdelivr.net/npm/d3-geo-projection
+- d3-geo-polygon (spherical polygon clipping): https://cdn.jsdelivr.net/npm/d3-geo-polygon
 
 These libraries are fetched dynamically at runtime from the jsDelivr CDN,
 ensuring that the most recent compatible versions are used unless explicitly
