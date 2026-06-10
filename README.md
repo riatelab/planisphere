@@ -19,7 +19,8 @@ CRAN with:
 install.packages("planisphere")
 ```
 
-Alternatively, you can install the development version of `planisphere` from [r-universe](https://riatelab.r-universe.dev/planisphere)
+Alternatively, you can install the development version of `planisphere`
+from [r-universe](https://riatelab.r-universe.dev/planisphere)
 with:
 
 ``` r
@@ -31,7 +32,7 @@ install.packages("planisphere", repos = c("https://riatelab.r-universe.dev", "ht
 The package provides two main functions.
 
 - `project()` applies a map projection to a spatial dataframe.
-- `display()` plot the projected result.
+- `display()` plot the projected spatial dataframe.
 
 ``` r
 library(sf)
@@ -56,7 +57,10 @@ planisphere::display(imago)
 
 <img src="man/figures/imago.png" width="100%"/>
 
-With `additional_layers = TRUE`, you can retrieve, along with your projected map basemap, the sphere and the graticules. As previoulsy, you can visualize them directly using the `display()` function.
+With `additional_layers = TRUE`, you can retrieve, along with the projected
+basemap, a list containing the basemap as well as the sphere and graticule
+layers. As previoulsy, you can visualize them directly using the `display()`
+function.
 
 ``` r
 mollweide <- planisphere::project(x = world,
@@ -94,7 +98,7 @@ With the `gallery()` function, you can quickly visualize a set of projections at
 
 Under the hood, this package executes JavaScript code. It is built on the V8 engine, using a context with default libraries preloaded. However, you can also create a new context and load additional libraries using the `new_v8_context()` function.
 
-By default, this package exposes the projection functions provided by three JavaScript libraries from the D3 ecosystem. We are grateful to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors who have helped develop and maintain these powerful geospatial tools.
+On load, the package exposes the projection functions provided by three JavaScript libraries from the D3 ecosystem. We are grateful to Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney, and all the contributors who have helped develop and maintain these powerful geospatial tools.
 
 - `d3-geo`: https://d3js.org/d3-geo/projection
 - `d3-geo-projection`: https://github.com/d3/d3-geo-projection

@@ -43,11 +43,11 @@
 #' planisphere::display(result)
 display <- function(x, title = NULL, extent = NULL) {
   mar_top <- if (!is.null(title)) 2 else 0
-  op <- par(
+  op <- graphics::par(
     mar = c(0, 0, mar_top, 0),
     bg = "white"
   )
-  on.exit(par(op))
+  on.exit(graphics::par(op))
 
   if (is.list(x) && !inherits(x, "sf")) {
     if (is.null(extent)) {

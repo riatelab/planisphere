@@ -140,3 +140,4 @@ clean <- function(x) {
   result <- suppressWarnings(sf::st_intersection(a, b))
   result <- sf::st_transform(result, 4326)
 }
+

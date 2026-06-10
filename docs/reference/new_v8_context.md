@@ -67,4 +67,11 @@ ct <- planisphere::new_v8_context()
 #> [OK] https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
 #> [OK] https://cdn.jsdelivr.net/npm/d3-geo-projection@4
 #> Planisphere is ready
+# Then:
+library(sf)
+world <- st_read(
+  system.file("gpkg/land.gpkg", package = "planisphere"),
+  quiet = TRUE
+)
+out <- planisphere::project(x = world, proj = "InterruptedBoggs", ct = ct)
 ```

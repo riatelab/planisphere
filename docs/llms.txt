@@ -12,7 +12,7 @@ This package provides access to a wide range of map projections. It
 allows spatial data frames containing geographic coordinates
 (latitude/longitude) to be projected. Projection calculations are
 performed using spherical geometry rather than ellipsoidal geodetic
-models.\*\*
+models.
 
 ## Installation
 
@@ -36,7 +36,7 @@ The package provides two main functions.
 - [`project()`](https://rneocarto.github.io/planisphere/reference/project.md)
   applies a map projection to a spatial dataframe.
 - [`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
-  plot the projected result.
+  plot the projected spatial dataframe.
 
 ``` r
 library(sf)
@@ -61,9 +61,10 @@ planisphere::display(imago)
 
 ![](reference/figures/imago.png)
 
-With `additional_layers = TRUE`, you can retrieve, along with your
-projected map basemap, the sphere and the graticules. As previoulsy, you
-can visualize them directly using the
+With `additional_layers = TRUE`, you can retrieve, along with the
+projected basemap, a list containing the basemap as well as the sphere
+and graticule layers. As previoulsy, you can visualize them directly
+using the
 [`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
 function.
 
@@ -116,11 +117,11 @@ using the
 [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md)
 function.
 
-By default, this package exposes the projection functions provided by
-three JavaScript libraries from the D3 ecosystem. We are grateful to
-Mike Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles
-Karney, and all the contributors who have helped develop and maintain
-these powerful geospatial tools.
+On load, the package exposes the projection functions provided by three
+JavaScript libraries from the D3 ecosystem. We are grateful to Mike
+Bostock, Philippe Rivière, Jason Davies, Ricky Reusser, Charles Karney,
+and all the contributors who have helped develop and maintain these
+powerful geospatial tools.
 
 - `d3-geo`: <https://d3js.org/d3-geo/projection>
 - `d3-geo-projection`: <https://github.com/d3/d3-geo-projection>

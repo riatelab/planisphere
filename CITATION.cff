@@ -9,9 +9,10 @@ type: software
 license: GPL-3.0-only
 title: 'planisphere: Map projections'
 version: 0.1.0
-abstract: A wrapper around D3.js for cartographic projections to design and visualize
-  world maps (planispheres). Projections are computed using D3.js spherical geometry
-  rather than ellipsoidal geodesic models.
+abstract: Applies cartographic projections to spatial data frames containing
+  geographic coordinates. Projection methods are based on the D3.js ecosystem
+  <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than ellipsoidal
+  geodesic models. 
 authors:
 - family-names: Lambert
   given-names: Nicolas

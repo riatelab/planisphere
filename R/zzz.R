@@ -15,41 +15,18 @@
 
   # Create V8 context
   .planisphere$ct <- V8::v8()
-  
-  # Retrieve V8 engine version from JS runtime
 
-  packageStartupMessage(sprintf(
-    "V8 engine %s initialized",
-    sub(".*V8 engine ([0-9.]+)>.*", "\\1", utils::capture.output( .planisphere$ct)[1])
-  ))
-  
-  packageStartupMessage("Loading D3.js geospatial stack")
-  
   for (lib in libs) {
     
     path <- file.path(js, lib$file)
     
     tryCatch({
-      
       .planisphere$ct$source(path)
-      
-      packageStartupMessage(sprintf(
-        "- %s (%s)",
-        lib$name,
-        lib$version
-      ))
-      
     }, error = function(e) {
       
-      packageStartupMessage(sprintf(
-        "- %s failed to load",
-        lib$name
-      ))
     })
   }
   
   # + some js helpers
   .planisphere$ct$source(file.path(js, "helpers.js"))
-  
-  packageStartupMessage("Planisphere is ready")
 }

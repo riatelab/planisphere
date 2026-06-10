@@ -46,4 +46,11 @@ fast and consistent computation of map projections and geometric transformations
 }
 \examples{
 ct <- planisphere::new_v8_context()
+# Then:
+library(sf)
+world <- st_read(
+  system.file("gpkg/land.gpkg", package = "planisphere"),
+  quiet = TRUE
+)
+out <- planisphere::project(x = world, proj = "InterruptedBoggs", ct = ct)
 }

@@ -36,6 +36,13 @@
 #'
 #' @examples
 #' ct <- planisphere::new_v8_context()
+#' # Then:
+#' library(sf)
+#' world <- st_read(
+#'   system.file("gpkg/land.gpkg", package = "planisphere"),
+#'   quiet = TRUE
+#' )
+#' out <- planisphere::project(x = world, proj = "InterruptedBoggs", ct = ct)
 new_v8_context <- function(
   libs = c(
     "https://cdn.jsdelivr.net/npm/d3@7",
@@ -46,7 +53,7 @@ new_v8_context <- function(
   verbose = TRUE
 ) {
   ct <- V8::v8()
-
+  
   # V8 version (safe parsing)
   v8_version <- sub(
     ".*V8 engine ([0-9.]+)>.*",
@@ -91,5 +98,9 @@ new_v8_context <- function(
 
   if (verbose) message("Planisphere is ready")
 
+  # + some js helpers
+  js <- system.file("js", package = "planisphere")
+  ct$source(file.path(js, "helpers.js"))
+  
   ct
 }

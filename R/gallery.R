@@ -64,11 +64,11 @@ gallery <- function(projections = NULL, sample = 12, ncol = 4, title = TRUE, ver
 
   n <- length(projections)
 
-  op <- par(
+  op <- graphics::par(
     mfrow = c(ceiling(n / ncol), ncol),
     mar = c(1, 1, 2, 1)
   )
-  on.exit(par(op), add = TRUE)
+  on.exit(graphics::par(op), add = TRUE)
 
   for (i in seq_along(projections)) {
     proj <- projections[i]
