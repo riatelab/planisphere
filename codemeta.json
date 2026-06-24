@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "planisphere",
   "description": "Applies cartographic projections to spatial data frames containing geographic coordinates. Projection methods are based on the 'D3.js' ecosystem <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than ellipsoidal geodesic models. ",
-  "name": "planisphere: Map projections",
+  "name": "planisphere: Map Projections",
   "codeRepository": "https://riatelab.github.io/planisphere/",
   "issueTracker": "https://github.com/riatelab/planisphere/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",

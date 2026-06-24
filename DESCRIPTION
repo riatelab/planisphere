@@ -1,5 +1,5 @@
 Package: planisphere
-Title: Map projections
+Title: Map Projections
 Version: 0.1.0
 Authors@R: c(person(given = "Nicolas",
                     family = "Lambert",
