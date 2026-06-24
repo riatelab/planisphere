@@ -1,24 +1,23 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "planisphere" in publications use:'
 type: software
-license: GPL-3.0-only
+license: GPL-3.0-or-later
 title: 'planisphere: Map projections'
 version: 0.1.0
-abstract: Applies cartographic projections to spatial data frames containing
-  geographic coordinates. Projection methods are based on the D3.js ecosystem
-  <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than ellipsoidal
-  geodesic models. 
+abstract: Applies cartographic projections to spatial data frames containing geographic
+  coordinates. Projection methods are based on the 'D3.js' ecosystem <https://doi.org/10.1109/TVCG.2011.185>
+  and use spherical geometry rather than ellipsoidal geodesic models.
 authors:
 - family-names: Lambert
   given-names: Nicolas
   email: nicolas.lambert@cnrs.fr
   orcid: https://orcid.org/0000-0003-4976-6560
-repository-code: https://github.com/riatelab/planisphere
+repository-code: https://github.com/riatelab/planisphere/issues/
 url: https://riatelab.github.io/planisphere/
 contact:
 - family-names: Lambert
@@ -85,6 +84,16 @@ references:
     email: dcooley@symbolix.com.au
   year: '2026'
   doi: 10.32614/CRAN.package.geojsonsf
+- type: software
+  title: graphics
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2026'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'

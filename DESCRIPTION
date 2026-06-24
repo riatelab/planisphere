@@ -7,12 +7,12 @@ Authors@R: c(person(given = "Nicolas",
                     role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0003-4976-6560")))
 Description: Applies cartographic projections to spatial data frames containing
-    geographic coordinates. Projection methods are based on the D3.js ecosystem
+    geographic coordinates. Projection methods are based on the 'D3.js' ecosystem
     <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than
     ellipsoidal geodesic models. 
 License: GPL (>= 3)
 URL: https://riatelab.github.io/planisphere/
-BugReports: https://github.com/riatelab/planisphere/issues
+BugReports: https://github.com/riatelab/planisphere/issues/
 Encoding: UTF-8
 Depends:
     R (>= 4.1.0)

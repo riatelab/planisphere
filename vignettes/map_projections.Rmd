@@ -46,7 +46,7 @@ planisphere::gallery(projections = c("ConicEqualArea","Eckert3", "Hill","Loximut
 
 The Earth is a sphere (more precisely, a geoid), a three-dimensional object floating in space. Yet the maps we use every day are flat: they exist in two dimensions, on paper or on a screen. To move from this curved reality to a flat representation, we need to transform coordinates expressed on the globe in latitude and longitude into Cartesian coordinates on a plane. This is not a simple flattening operation: it relies on a mathematical transformation known as a **map projection**. Projections are generally classified according to the geometric surface used as an intermediate step : **cylindrical**, **conic**, or **azimuthal**, each offering a different way of “wrapping” the globe before unfolding it.
 
-<img src="fig/projection_construction.png" width="100%"/>
+<img src="fig/projection_construction.png" width="100%" alt = "projection construction"/>
 
 Beyond classical geometric constructions, there is also a family of **pseudoprojections**, which are not based on a strict developable surface but are instead defined analytically to reduce and balance distortions. This category includes pseudocylindrical, pseudoconical, and pseudoazimuthal projections, which relax geometric constraints in order to produce more visually or statistically balanced representations of the world. Closely related are **discontinuous projections**, which introduce intentional breaks or cuts in the map (typically along selected meridians or regions) in order to manage and redistribute distortion, improving the representation of key areas at the expense of global continuity. Finally, some approaches rely on more **piecewise mathematical constructions**, such as polyhedral projections, where the globe is first mapped onto a polyhedron (e.g., an icosahedron or a cube) before being unfolded into the plane.
 
@@ -70,7 +70,7 @@ par(mfrow = c(1, 1))
 
 However, map projections inevitably introduces distortions. In a way, it is similar to trying to press the peel of an orange onto a flat table. No matter how carefully you proceed, the surface cannot lie flat without consequences: it will stretch in some places, compress in others, and may even tear or fold if forced. The same fundamental constraint applies to the Earth’s surface when projected onto a plane. No projection can preserve all geometric properties at once, meaning that distances, areas, shapes, or directions are always altered to some degree, depending on the chosen projection and its purpose. These distortions can be visualized using **Tissot’s indicatrix**, a diagnostic tool that represents how infinitesimal circles on the globe are transformed into ellipses on the map, making it possible to assess locally how a projection deforms angles, areas, and shapes across space.
 
-<img src="fig/distortions.png" width="100%"/>
+<img src="fig/distortions.png" width="100%" alt = "Projections distortions"/>
 
 # Geodesic vs Spherical model
 

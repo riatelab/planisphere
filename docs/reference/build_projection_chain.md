@@ -35,6 +35,6 @@ projection constructor chain (e.g.
 `d3.geoOrthographic().rotate([...])`).
 
 It is used internally by
-[`project()`](https://rneocarto.github.io/planisphere/reference/project.md)
+[`project()`](https://riatelab.github.io/planisphere/reference/project.md)
 to generate the projection expression evaluated inside the V8 JavaScript
 context.

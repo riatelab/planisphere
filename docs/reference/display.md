@@ -1,7 +1,7 @@
 # Display a projected planisphere
 
 Render a complete planisphere from a projected object created with
-[`project()`](https://rneocarto.github.io/planisphere/reference/project.md).
+[`project()`](https://riatelab.github.io/planisphere/reference/project.md).
 The display includes the projected sphere outline, graticule, and
 geographic features.
 
@@ -16,7 +16,7 @@ display(x, title = NULL, extent = NULL)
 - x:
 
   A list returned by
-  [`project()`](https://rneocarto.github.io/planisphere/reference/project.md),
+  [`project()`](https://riatelab.github.io/planisphere/reference/project.md),
   containing three `sf` objects:
 
   - `basemap`: projected geographic features

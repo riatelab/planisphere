@@ -2,10 +2,10 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "planisphere",
-  "description": "Applies cartographic projections to spatial data frames containing geographic coordinates. Projection methods are based on the D3.js ecosystem <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than ellipsoidal geodesic models. ",
+  "description": "Applies cartographic projections to spatial data frames containing geographic coordinates. Projection methods are based on the 'D3.js' ecosystem <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than ellipsoidal geodesic models. ",
   "name": "planisphere: Map projections",
   "codeRepository": "https://riatelab.github.io/planisphere/",
-  "issueTracker": "https://github.com/riatelab/planisphere/issues",
+  "issueTracker": "https://github.com/riatelab/planisphere/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -106,7 +106,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=geojsonsf"
     },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "graphics",
+      "name": "graphics"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "20746.137KB"
+  "fileSize": "4935.714KB"
 }

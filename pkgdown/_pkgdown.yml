@@ -2,7 +2,8 @@ home:
   title: "Map projections"
   description: >
     Planisphere is wrapper around D3.js for cartographic projections to design and visualize world maps (planispheres). Projections are computed using D3.js spherical geometry rather than ellipsoidal geodesic models.
-url: https://rneocarto.github.io/planisphere/
+
+url: https://riatelab.github.io/planisphere/
 
 template:
   bootstrap: 5

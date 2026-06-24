@@ -17,7 +17,7 @@
 ">
 <meta property="og:description" content="Planisphere is wrapper around D3.js for cartographic projections to design and visualize world maps (planispheres). Projections are computed using D3.js spherical geometry rather than ellipsoidal geodesic models.
 ">
-<meta property="og:image" content="https://rneocarto.github.io/planisphere/reference/figures/planisphere.png">
+<meta property="og:image" content="https://riatelab.github.io/planisphere/reference/figures/planisphere.png">
 <meta property="og:image:alt" content="planisphere: map projections">
 </head>
 <body>
@@ -53,7 +53,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="planisphere-">planisphere <img src="reference/figures/planisphere.png" align="right" width="120"><a class="anchor" aria-label="anchor" href="#planisphere-"></a>
+<div class="page-header"><h1 id="planisphere-">planisphere <img src="reference/figures/planisphere.png" align="right" width="120" alt="logo planisphere"><a class="anchor" aria-label="anchor" href="#planisphere-"></a>
 </h1></div>
 <p><a href="https://riatelab.r-universe.dev/planisphere" class="external-link"><img src="https://riatelab.r-universe.dev/planisphere/badges/version" alt="planisphere status badge"></a> <a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
 <p><strong>Map projections</strong></p>
@@ -88,11 +88,11 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">equal</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"EqualEarth"</span><span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">equal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/EqualEarth.png" width="100%"></p>
+<p><img src="reference/figures/EqualEarth.png" width="100%" alt="EqualEarth"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">imago</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>, proj <span class="op">=</span> <span class="st">"Imago"</span><span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">imago</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/imago.png" width="100%"></p>
+<p><img src="reference/figures/imago.png" width="100%" alt="imago"></p>
 <p>With <code>additional_layers = TRUE</code>, you can retrieve, along with the projected basemap, a list containing the basemap as well as the sphere and graticule layers. As previoulsy, you can visualize them directly using the <code><a href="reference/display.html">display()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mollweide</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
@@ -100,7 +100,7 @@
 <span>                                  additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>                                  <span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">mollweide</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/InterruptedMollweide.png" width="100%"></p>
+<p><img src="reference/figures/InterruptedMollweide.png" width="100%" alt="InterruptedMollweide"></p>
 <p>You can customize projections using dedicated parameters. For example, to obtain a polar projection:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">polar</span> <span class="op">&lt;-</span> <span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/project.html">project</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">world</span>,</span>
@@ -110,14 +110,14 @@
 <span>                                  additional_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>                                  <span class="op">)</span></span>
 <span><span class="fu">planisphere</span><span class="fu">::</span><span class="fu"><a href="reference/display.html">display</a></span><span class="op">(</span><span class="va">polar</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/polar.png" width="100%"></p>
+<p><img src="reference/figures/polar.png" width="100%" alt="polar"></p>
 </div>
 <div class="section level2">
 <h2 id="id_117-projections-available">117 Projections available<a class="anchor" aria-label="anchor" href="#id_117-projections-available"></a>
 </h2>
 <p>The package provides more than a hundred map projections. To retrieve their names, you can use the <code><a href="reference/registry.html">registry()</a></code> function.</p>
 <p>With the <code><a href="reference/gallery.html">gallery()</a></code> function, you can quickly visualize a set of projections at a glance. By default, the function displays 12 randomly selected projections. Here is an example.</p>
-<p><img src="reference/figures/gallery.png" width="100%"></p>
+<p><img src="reference/figures/gallery.png" width="100%" alt="gallery"></p>
 </div>
 <div class="section level2">
 <h2 id="under-the-hood">Under the hood<a class="anchor" aria-label="anchor" href="#under-the-hood"></a>
@@ -160,7 +160,7 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/riatelab/planisphere/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/riatelab/planisphere/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/riatelab/planisphere/issues/" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 

@@ -92,7 +92,7 @@ project(
 - ct:
 
   A custom V8 JavaScript context if needed. See
-  [`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md).
+  [`new_v8_context()`](https://riatelab.github.io/planisphere/reference/new_v8_context.md).
 
 - ...:
 

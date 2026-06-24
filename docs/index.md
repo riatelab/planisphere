@@ -1,4 +1,4 @@
-# planisphere ![](reference/figures/planisphere.png)
+# planisphere ![logo planisphere](reference/figures/planisphere.png)
 
 [![planisphere status
 badge](https://riatelab.r-universe.dev/planisphere/badges/version)](https://riatelab.r-universe.dev/planisphere)
@@ -19,6 +19,7 @@ models.
 You can install the released version of `planisphere` from CRAN with:
 
 ``` r
+
 install.packages("planisphere")
 ```
 
@@ -26,6 +27,7 @@ Alternatively, you can install the development version of `planisphere`
 from [r-universe](https://riatelab.r-universe.dev/planisphere) with:
 
 ``` r
+
 install.packages("planisphere", repos = c("https://riatelab.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
@@ -33,12 +35,13 @@ install.packages("planisphere", repos = c("https://riatelab.r-universe.dev", "ht
 
 The package provides two main functions.
 
-- [`project()`](https://rneocarto.github.io/planisphere/reference/project.md)
+- [`project()`](https://riatelab.github.io/planisphere/reference/project.md)
   applies a map projection to a spatial dataframe.
-- [`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
+- [`display()`](https://riatelab.github.io/planisphere/reference/display.md)
   plot the projected spatial dataframe.
 
 ``` r
+
 library(sf)
 
 world <- st_read(
@@ -48,27 +51,30 @@ world <- st_read(
 ```
 
 ``` r
+
 equal <- planisphere::project(x = world, proj = "EqualEarth")
 planisphere::display(equal)
 ```
 
-![](reference/figures/EqualEarth.png)
+![EqualEarth](reference/figures/EqualEarth.png)
 
 ``` r
+
 imago <- planisphere::project(x = world, proj = "Imago")
 planisphere::display(imago)
 ```
 
-![](reference/figures/imago.png)
+![imago](reference/figures/imago.png)
 
 With `additional_layers = TRUE`, you can retrieve, along with the
 projected basemap, a list containing the basemap as well as the sphere
 and graticule layers. As previoulsy, you can visualize them directly
 using the
-[`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
+[`display()`](https://riatelab.github.io/planisphere/reference/display.md)
 function.
 
 ``` r
+
 mollweide <- planisphere::project(x = world,
                                   proj = "InterruptedMollweide",
                                   additional_layers = TRUE
@@ -76,12 +82,13 @@ mollweide <- planisphere::project(x = world,
 planisphere::display(mollweide)
 ```
 
-![](reference/figures/InterruptedMollweide.png)
+![InterruptedMollweide](reference/figures/InterruptedMollweide.png)
 
 You can customize projections using dedicated parameters. For example,
 to obtain a polar projection:
 
 ``` r
+
 polar <- planisphere::project(x = world,
                                   proj = "AzimuthalEquidistant",
                                   clipAngle = 150,
@@ -91,22 +98,22 @@ polar <- planisphere::project(x = world,
 planisphere::display(polar)
 ```
 
-![](reference/figures/polar.png)
+![polar](reference/figures/polar.png)
 
 ## 117 Projections available
 
 The package provides more than a hundred map projections. To retrieve
 their names, you can use the
-[`registry()`](https://rneocarto.github.io/planisphere/reference/registry.md)
+[`registry()`](https://riatelab.github.io/planisphere/reference/registry.md)
 function.
 
 With the
-[`gallery()`](https://rneocarto.github.io/planisphere/reference/gallery.md)
+[`gallery()`](https://riatelab.github.io/planisphere/reference/gallery.md)
 function, you can quickly visualize a set of projections at a glance. By
 default, the function displays 12 randomly selected projections. Here is
 an example.
 
-![](reference/figures/gallery.png)
+![gallery](reference/figures/gallery.png)
 
 ## Under the hood
 
@@ -114,7 +121,7 @@ Under the hood, this package executes JavaScript code. It is built on
 the V8 engine, using a context with default libraries preloaded.
 However, you can also create a new context and load additional libraries
 using the
-[`new_v8_context()`](https://rneocarto.github.io/planisphere/reference/new_v8_context.md)
+[`new_v8_context()`](https://riatelab.github.io/planisphere/reference/new_v8_context.md)
 function.
 
 On load, the package exposes the projection functions provided by three
@@ -138,6 +145,7 @@ parameters.
 For example
 
 ``` r
+
 planisphere::projection(x = world, 
                         proj = "AzimuthalEqualArea",
                         rotate = c(-10, -52)
@@ -147,6 +155,7 @@ planisphere::projection(x = world,
 is equivalent to
 
 ``` r
+
 planisphere::projection(x = world, 
                         proj = "d3.geoAzimuthalEqualArea().rotate([-10, 52])"
                         )

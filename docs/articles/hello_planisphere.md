@@ -63,11 +63,13 @@ clipping.
 ## 2 - How it works?
 
 ``` r
+
 # install.packages("remotes")
 # remotes::install_github("riatelab/planisphere")
 ```
 
 ``` r
+
 library(planisphere)
 ```
 
@@ -88,6 +90,7 @@ library(planisphere)
     ## Planisphere is ready 🌐
 
 ``` r
+
 # Data Loading
 library(sf)
 ```
@@ -95,6 +98,7 @@ library(sf)
     ## Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
 
 ``` r
+
 world <- st_read(
   system.file("gpkg/land.gpkg", package = "planisphere"),
   quiet = TRUE
@@ -102,16 +106,19 @@ world <- st_read(
 ```
 
 ``` r
+
 result <- planisphere::project(x = world, proj = "geoInterruptedMollweide")
 ```
 
 ``` r
+
 planisphere::display(result)
 ```
 
 ![](hello_planisphere_files/figure-html/unnamed-chunk-6-1.png)
 
 ``` r
+
 result <- planisphere::project(x = world, proj = "geoIcosahedral") |> 
   display()
 ```
@@ -123,6 +130,7 @@ result <- planisphere::project(x = world, proj = "geoIcosahedral") |>
 Peirce projection
 
 ``` r
+
 peirceN <- planisphere::project(
                             x = world,
                             proj = "PeirceQuincuncial",
@@ -135,6 +143,7 @@ display(peirceN)
 ![](hello_planisphere_files/figure-html/unnamed-chunk-8-1.png)
 
 ``` r
+
 peirceS <- planisphere::project(
                             x = world,
                             proj = "PeirceQuincuncial",
@@ -149,6 +158,7 @@ display(peirceS)
 Peters (upside down)
 
 ``` r
+
 peters <- planisphere::project(
                             x = world,
                             proj = "geoCylindricalEqualArea",
@@ -162,6 +172,7 @@ display(peters)
 ![](hello_planisphere_files/figure-html/unnamed-chunk-10-1.png)
 
 ``` r
+
 polar <- planisphere::project(
                             x = world,
                             proj = "geoAzimuthalEquidistant",
@@ -180,6 +191,7 @@ projection: d3.geoCylindricalEqualArea().parallel(45).rotate(\[167,
 Hao
 
 ``` r
+
 hao <- planisphere::project(
                             x = world,
                             proj = "geoHufnagel",

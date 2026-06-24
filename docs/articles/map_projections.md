@@ -28,7 +28,7 @@ geometric surface used as an intermediate step : **cylindrical**,
 **conic**, or **azimuthal**, each offering a different way of “wrapping”
 the globe before unfolding it.
 
-![](fig/projection_construction.png)
+![projection construction](fig/projection_construction.png)
 
 Beyond classical geometric constructions, there is also a family of
 **pseudoprojections**, which are not based on a strict developable
@@ -61,7 +61,7 @@ represents how infinitesimal circles on the globe are transformed into
 ellipses on the map, making it possible to assess locally how a
 projection deforms angles, areas, and shapes across space.
 
-![](fig/distortions.png)
+![Projections distortions](fig/distortions.png)
 
 ## Geodesic vs Spherical model
 
@@ -84,9 +84,9 @@ These are grouped into different categories: “cylindrical”, “conic”,
 “polyhedral”, “quincuncial”, “regional”, “pseudoazimuthal”, and
 “miscellaneous”. You can retrieve their names and visualize them using
 the
-[`registry()`](https://rneocarto.github.io/planisphere/reference/registry.md)
+[`registry()`](https://riatelab.github.io/planisphere/reference/registry.md)
 and
-[`gallery()`](https://rneocarto.github.io/planisphere/reference/gallery.md)
+[`gallery()`](https://riatelab.github.io/planisphere/reference/gallery.md)
 functions.
 
 Let’s take a look at the available projections.
@@ -96,12 +96,13 @@ Let’s take a look at the available projections.
 ## Project a baseamap
 
 The main function of the package is
-[`project()`](https://rneocarto.github.io/planisphere/reference/project.md),
+[`project()`](https://riatelab.github.io/planisphere/reference/project.md),
 which can be used to project any spatial data frame.
 
 Let’s load a world basemap.
 
 ``` r
+
 library(sf)
 world <- st_read(
   system.file("gpkg/land.gpkg", package = "planisphere"),
@@ -112,6 +113,7 @@ world <- st_read(
 We can now project it.
 
 ``` r
+
 spilhaus <- planisphere::project(world, proj = "Spilhaus",
                                  additional_layers = TRUE)
 ```
@@ -119,10 +121,11 @@ spilhaus <- planisphere::project(world, proj = "Spilhaus",
 The `additional_layers` parameter allows you to retrieve, together with
 the projected basemap, the sphere and the graticules. We can visualize
 the whole set using the
-[`display()`](https://rneocarto.github.io/planisphere/reference/display.md)
+[`display()`](https://riatelab.github.io/planisphere/reference/display.md)
 function.
 
 ``` r
+
 planisphere::display(spilhaus,  title = "Spilhaus")
 ```
 
@@ -142,6 +145,7 @@ is centered on the North Pole, which gives greater emphasis to the
 Northern Hemisphere.
 
 ``` r
+
 peirceN <- planisphere::project(
                             x = world,
                             proj = "PeirceQuincuncial",
@@ -173,6 +177,7 @@ projection, but it challenges conventional map orientation and the
 symbolic hierarchy embedded in standard world representations.
 
 ``` r
+
 peters <- planisphere::project(
                             x = world,
                             proj = "CylindricalEqualArea",
@@ -196,6 +201,7 @@ equidistant projection centered on the North Pole, symbolizing a world
 without a dominant center.
 
 ``` r
+
 polar <- planisphere::project(
                             x = world,
                             proj = "geoAzimuthalEquidistant",
@@ -217,6 +223,7 @@ representations that are less centered on Euro-American cartographic
 conventions.
 
 ``` r
+
 hao <- planisphere::project(
                             x = world,
                             proj = "geoHufnagel",
@@ -242,6 +249,7 @@ Europe.
 First, let’s retrieve some data online.
 
 ``` r
+
 europe <- sf::st_read("https://gisco-services.ec.europa.eu/distribution/v2/nuts/gpkg/NUTS_RG_20M_2024_4326_LEVL_0.gpkg", quiet = TRUE) |>
  sf::st_crop(xmin=-10, xmax=45, ymin=25, ymax=72)
 france <- europe[europe$ISO3_CODE == "FRA",]
@@ -258,6 +266,7 @@ reproduced using the “AzimuthalEqualArea” projection by adjusting the
 `rotate` parameter.
 
 ``` r
+
 laea = planisphere::project(europe, 
                             proj = "AzimuthalEqualArea", 
                             rotate = c(-10, -52)
@@ -276,6 +285,7 @@ to properly clip the resulting map. Please refer to the d3.js
 documentation to understand how this mechanism works.
 
 ``` r
+
 lambert93 <- planisphere::project(france, 
                                  proj = "ConicConformal", 
                                  rotate = c(-3,0), 

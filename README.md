@@ -1,4 +1,4 @@
-# planisphere <img src="man/figures/planisphere.png" align="right" width="120"/>
+# planisphere <img src="man/figures/planisphere.png" align="right" width="120" alt = "logo planisphere"/>
 
 [![planisphere status
 badge](https://riatelab.r-universe.dev/planisphere/badges/version)](https://riatelab.r-universe.dev/planisphere)
@@ -8,7 +8,10 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 **Map projections**
 
-This package provides access to a wide range of map projections. It allows spatial data frames containing geographic coordinates (latitude/longitude) to be projected. Projection calculations are performed using spherical geometry rather than ellipsoidal geodetic models.
+This package provides access to a wide range of map projections.
+It allows spatial data frames containing geographic coordinates
+(latitude/longitude) to be projected. Projection calculations are
+performed using spherical geometry rather than ellipsoidal geodetic models.
 
 ## Installation
 
@@ -48,14 +51,14 @@ equal <- planisphere::project(x = world, proj = "EqualEarth")
 planisphere::display(equal)
 ```
 
-<img src="man/figures/EqualEarth.png" width="100%"/>
+<img src="man/figures/EqualEarth.png" width="100%" alt = "EqualEarth"/>
 
 ``` r
 imago <- planisphere::project(x = world, proj = "Imago")
 planisphere::display(imago)
 ```
 
-<img src="man/figures/imago.png" width="100%"/>
+<img src="man/figures/imago.png" width="100%" alt = "imago"/>
 
 With `additional_layers = TRUE`, you can retrieve, along with the projected
 basemap, a list containing the basemap as well as the sphere and graticule
@@ -70,7 +73,7 @@ mollweide <- planisphere::project(x = world,
 planisphere::display(mollweide)
 ```
 
-<img src="man/figures/InterruptedMollweide.png" width="100%"/>
+<img src="man/figures/InterruptedMollweide.png" width="100%" alt = "InterruptedMollweide"/>
 
 You can customize projections using dedicated parameters. For example, to obtain a polar projection:
 
@@ -84,7 +87,7 @@ polar <- planisphere::project(x = world,
 planisphere::display(polar)
 ```
 
-<img src="man/figures/polar.png" width="100%"/>
+<img src="man/figures/polar.png" width="100%" alt = "polar"/>
 
 ## 117 Projections available
 
@@ -92,7 +95,7 @@ The package provides more than a hundred map projections. To retrieve their name
 
 With the `gallery()` function, you can quickly visualize a set of projections at a glance. By default, the function displays 12 randomly selected projections. Here is an example.
 
-<img src="man/figures/gallery.png" width="100%"/>
+<img src="man/figures/gallery.png" width="100%" alt = "gallery"/>
 
 ## Under the hood
 
