@@ -1,11 +1,8 @@
 Package: planisphere
 Title: Map Projections
 Version: 0.1.0
-Authors@R: c(person(given = "Nicolas",
-                    family = "Lambert",
-                    email = "nicolas.lambert@cnrs.fr", 
-                    role = c("aut", "cre"),
-                    comment = c(ORCID = "0000-0003-4976-6560")))
+Authors@R: person("Nicolas", "Lambert", email = "nicolas.lambert@cnrs.fr",
+  role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4976-6560"))
 Description: Applies cartographic projections to spatial data frames containing
     geographic coordinates. Projection methods are based on the 'D3.js' ecosystem
     <doi:10.1109/TVCG.2011.185> and use spherical geometry rather than

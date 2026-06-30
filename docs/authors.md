@@ -10,11 +10,11 @@
 Source:
 [`DESCRIPTION`](https://github.com/riatelab/planisphere/blob/HEAD/DESCRIPTION)
 
-Lambert N (2026). *planisphere: Map projections*. R package version
+Lambert N (2026). *planisphere: Map Projections*. R package version
 0.1.0, <https://riatelab.github.io/planisphere/>.
 
     @Manual{,
-      title = {planisphere: Map projections},
+      title = {planisphere: Map Projections},
       author = {Nicolas Lambert},
       year = {2026},
       note = {R package version 0.1.0},
