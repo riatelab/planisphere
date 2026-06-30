@@ -60,7 +60,6 @@ unproject <- function(
   basemap <- geojsonsf::geojson_sf(res)
 
   sf::st_crs(basemap) <- NA
-#  basemap <- flipY(basemap)
 
     return(basemap)
 }
