@@ -152,3 +152,29 @@ function rewindRing(ring, dir) {
   }
   if (tArea + err >= 0 !== !!dir) ring.reverse();
 }
+
+// ---------------------
+// Unproject functions
+// ---------------------
+
+
+function unproject(geojson, options = {}) {
+  let x = JSON.parse(JSON.stringify(geojson));
+  x.features.forEach(
+    (d) =>
+      (d.geometry.coordinates = unprojectCoords(
+        d.geometry.coordinates,
+        options.projection
+      ))
+  );
+  return x;
+}
+
+function unprojectCoords(coords, proj) {
+  if (typeof coords[0] !== "object") return proj.invert(coords);
+  return coords.map(function (coord) {
+    return unprojectCoords(coord, proj);
+  });
+}
+
+
