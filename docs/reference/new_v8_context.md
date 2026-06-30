@@ -64,7 +64,7 @@ ct <- planisphere::new_v8_context()
 #> Loading additional JavaScript libraries
 #> [OK] https://cdn.jsdelivr.net/npm/d3@7
 #> [OK] https://cdn.jsdelivr.net/npm/d3-geo@3
-#> [OK] https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
+#> [FAIL] https://cdn.jsdelivr.net/npm/d3-geo-polygon@2
 #> [OK] https://cdn.jsdelivr.net/npm/d3-geo-projection@4
 #> Planisphere is ready
 # Then:

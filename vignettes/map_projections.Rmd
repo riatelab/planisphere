@@ -55,7 +55,7 @@ Beyond classical geometric constructions, there is also a family of **pseudoproj
 #| message: false
 #| warning: false
 #| fig-height: 2
-par(mfrow = c(1, 3), mar = c(1, 1, 2, 1))
+op <- par(mfrow = c(1, 3), mar = c(1, 1, 2, 1))
 map1 <- planisphere::project(x = world, proj = "NaturalEarth1", graticule = c(30,30), additional_layers = TRUE)
 plot(sf::st_geometry(map1$sphere), main = "Pseudo", col = "#222222")
 plot(sf::st_geometry(map1$graticule), col = "#D0D0D0", add= TRUE)
@@ -65,7 +65,7 @@ plot(sf::st_geometry(map2$graticule), col = "#D0D0D0", add= TRUE)
 map3 <- planisphere::project(x = world, proj = "Dodecahedral", graticule = c(30,30), additional_layers = TRUE)
 plot(sf::st_geometry(map3$sphere), main = "Polyhedral", col = "#222222")
 plot(sf::st_geometry(map3$graticule), col = "#D0D0D0", add= TRUE)
-par(mfrow = c(1, 1))
+par(op)
 ```
 
 However, map projections inevitably introduces distortions. In a way, it is similar to trying to press the peel of an orange onto a flat table. No matter how carefully you proceed, the surface cannot lie flat without consequences: it will stretch in some places, compress in others, and may even tear or fold if forced. The same fundamental constraint applies to the Earth’s surface when projected onto a plane. No projection can preserve all geometric properties at once, meaning that distances, areas, shapes, or directions are always altered to some degree, depending on the chosen projection and its purpose. These distortions can be visualized using **Tissot’s indicatrix**, a diagnostic tool that represents how infinitesimal circles on the globe are transformed into ellipses on the map, making it possible to assess locally how a projection deforms angles, areas, and shapes across space.
