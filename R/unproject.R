@@ -54,9 +54,7 @@ unproject <- function(
     proj_chain,
     await = FALSE
   )
-  
-  # Retreive geometries
-  
+
   basemap <- geojsonsf::geojson_sf(res)
 
   sf::st_crs(basemap) <- NA
