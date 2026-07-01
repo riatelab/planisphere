@@ -15,9 +15,12 @@ prj <- "InterruptedMollweide"
 
 projected <- project(x = world, proj = prj)
 
-display(projected)
+projected <- projected[projected$ISO3 != "ATA",]
 
 result <- unproject(projected,  prj)
+
+
+
 
 
 plot(st_geometry(world))
