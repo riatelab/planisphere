@@ -11,7 +11,7 @@
 #' datums (e.g., WGS84). As a result, this function is primarily intended for visualization
 #' and cartographic rendering rather than high-precision geodetic computation.
 #'
-#' @param x An \code{sf} spatial dataframe to project.
+#' @param x An \code{sf} spatial dataframe or a \code{SpatVector} to project.
 #' @param proj A D3 projection name or constructor (e.g. "geoInterruptedHomolosine").
 #' @param rotate Rotation parameters passed to the projection.
 #' @param reflectX Logical; whether to reflect the projection on the X axis.
@@ -67,6 +67,11 @@ project <- function(
   ct = .planisphere$ct,
   ...
 ) {
+
+  if (inherits(x, "SpatVector")) {
+    x <- sf::st_as_sf(x)
+  }
+
   # post-processing
   if (clip) {
     geojson <- geojsonsf::sf_geojson(clean(x))
